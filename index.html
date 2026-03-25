@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adestramento Sem Mistério - Método Comprovado</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800;900&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Montserrat', 'sans-serif'],
+                    },
+                    colors: {
+                        gold: '#FFD700',
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- CSS (Linking the existing style.css which will have base variables) -->
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background:
+                radial-gradient(circle at 20% 30%, rgba(255, 200, 0, 0.06), transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(255, 200, 0, 0.05), transparent 40%),
+                radial-gradient(rgba(255, 215, 0, 0.15) 1px, transparent 1px),
+                #050505;
+            background-size: 100% 100%, 100% 100%, 40px 40px, 100% 100%;
+            background-attachment: fixed;
+            color: #d1d5db;
+            /* Default text-gray-300 */
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        section {
+            position: relative;
+        }
+
+        section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(255, 200, 0, 0.08), transparent);
+            filter: blur(80px);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: -200px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 900px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255, 200, 0, 0.15), transparent 70%);
+            filter: blur(80px);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Glass Cards Premium */
+        .glass-card {
+            background-color: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 1rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.25);
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 40px rgba(255, 215, 0, 0.25);
+            border-color: rgba(255, 215, 0, 0.5);
+        }
+
+        .ambient-glow {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100vw;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.08) 0%, rgba(0, 0, 0, 0) 60%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #ffd700, transparent);
+            margin: 80px auto;
+            width: 80%;
+            position: relative;
+            opacity: 0.7;
+        }
+
+        .divider::after {
+            content: "✦";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #ffd700;
+            background: #050505;
+            padding: 0 10px;
+            font-size: 1.2rem;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+
+        .btn-gold {
+            position: relative;
+            overflow: hidden;
+            transition: all .3s ease !important;
+        }
+
+        .btn-gold:hover {
+            transform: translateY(-3px) !important;
+            box-shadow: 0 10px 30px rgba(255, 200, 0, 0.35) !important;
+        }
+
+        .btn-gold::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(120deg, transparent, rgba(255, 255, 255, .4), transparent);
+            animation: shine 4s infinite;
+        }
+
+        @keyframes shine {
+            0% {
+                left: -100%;
+            }
+
+            60% {
+                left: 100%;
+            }
+
+            100% {
+                left: 100%;
+            }
+        }
+
+        .phone {
+            box-shadow: 0 20px 60px rgba(255, 200, 0, 0.15);
+        }
+
+        .title-h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 2.25rem;
+            color: #ffffff;
+            margin-bottom: 2rem;
+            line-height: 1.2;
+        }
+
+        @media (min-width: 768px) {
+            .title-h2 {
+                font-size: 3rem;
+            }
+        }
+
+        /* Video Container for 16:9 Aspect Ratio */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            /* 16:9 */
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            background: #000;
+            border-radius: 1rem;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.1);
+        }
+    </style>
+</head>
+
+<body class="antialiased selection:bg-gold selection:text-black">
+
+    <div class="ambient-glow"></div>
+
+    <!-- SEÇÃO 1 — HERO (ACIMA DA DOBRA) -->
+    <section class="hero relative pt-20 pb-16 px-6 text-center z-10 w-full max-w-6xl mx-auto">
+
+        <h1
+            class="font-heading text-4xl md:text-5xl lg:text-5xl font-black text-white leading-tight mb-6 tracking-tight uppercase">
+            SEU CACHORRO NÃO É TEIMOSO.<br>
+            <span class="text-yellow-400 mt-2 block">ELE SÓ PRECISA DE UMA LIDERANÇA CLARA.</span>
+        </h1>
+
+        <p class="text-lg md:text-xl text-gray-300 font-medium max-w-2xl mx-auto mb-10 leading-relaxed">
+            Descubra o método simples que já ajudou milhares de donos a transformar o comportamento do seu cachorro sem
+            agressividade e sem técnicas complicadas.
+        </p>
+
+
+
+        <!-- BOTÕES -->
+        <div class="flex flex-col sm:flex-row justify-center gap-4 mb-10 w-full max-w-4xl mx-auto">
+            <!-- Botão Secundário (QUIZ) - Fica embaixo no mobile, esquerda no desktop -->
+            <a href="https://xn--quizadestramentosemmistrio-xlc.online" target="_self"
+                class="order-2 sm:order-1 w-full sm:w-1/2 flex items-center justify-center border-2 border-yellow-400 text-yellow-400 font-heading font-bold md:text-base rounded-xl px-4 py-4 md:py-5 hover:bg-yellow-400 hover:text-black transition-all duration-300 text-center shadow-[0_0_15px_rgba(255,215,0,0.1)]">
+                FAZER TESTE RÁPIDO DO MEU CACHORRO
+            </a>
+
+            <!-- Botão Principal (COMPRA) - Fica em cima no mobile, direita no desktop -->
+            <a href="https://go.hotmart.com/V104248611V?src=hero" target="_blank"
+                class="order-1 sm:order-2 w-full sm:w-1/2 flex items-center justify-center bg-yellow-400 text-black font-heading font-black md:text-base rounded-xl px-4 py-4 md:py-5 hover:scale-105 shadow-[0_0_30px_rgba(255,215,0,0.4)] transition-all duration-300 text-center uppercase btn-gold">
+                QUERO TRANSFORMAR O COMPORTAMENTO DO MEU PET
+            </a>
+        </div>
+
+        <!-- PROVAS -->
+        <div class="flex flex-wrap justify-center gap-x-8 gap-y-4 text-sm font-semibold text-gray-400">
+            <div class="flex items-center gap-2"><i data-lucide="check-circle-2" class="w-5 h-5 text-yellow-400"></i>
+                Método simples</div>
+            <div class="flex items-center gap-2"><i data-lucide="check-circle-2" class="w-5 h-5 text-yellow-400"></i>
+                Funciona para qualquer raça</div>
+            <div class="flex items-center gap-2"><i data-lucide="check-circle-2" class="w-5 h-5 text-yellow-400"></i>
+                Passo a passo fácil</div>
+        </div>
+
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- SEÇÃO 3 — IDENTIFICAÇÃO DO PROBLEMA -->
+    <section class="py-20 px-6 w-full max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="title-h2">Você se identifica com algum <br class="hidden md:block"><span class="text-gold">desses
+                    problemas?</span></h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+
+            <div class="glass-card p-6 flex flex-col items-center text-center">
+                <div class="w-16 h-16 rounded-full bg-red-500/10 flex items-center justify-center mb-4 text-red-400">
+                    <i data-lucide="activity" class="w-8 h-8"></i>
+                </div>
+                <h3 class="text-lg font-bold text-white mb-2">Puxa a guia no passeio</h3>
+            </div>
+
+            <div class="glass-card p-6 flex flex-col items-center text-center">
+                <div class="w-16 h-16 rounded-full bg-red-500/10 flex items-center justify-center mb-4 text-red-400">
+                    <i data-lucide="volume-2" class="w-8 h-8"></i>
+                </div>
+                <h3 class="text-lg font-bold text-white mb-2">Late excessivamente</h3>
+            </div>
+
+            <div class="glass-card p-6 flex flex-col items-center text-center">
+                <div class="w-16 h-16 rounded-full bg-red-500/10 flex items-center justify-center mb-4 text-red-400">
+                    <i data-lucide="ear-off" class="w-8 h-8"></i>
+                </div>
+                <h3 class="text-lg font-bold text-white mb-2">Ignora comandos</h3>
+            </div>
+
+            <div
+                class="glass-card p-6 flex flex-col items-center text-center lg:col-start-2 lg:col-span-1 lg:-ml-32 w-full lg:w-[120%]">
+                <div
+                    class="w-16 h-16 rounded-full bg-red-500/10 flex items-center justify-center mb-4 text-red-400 mx-auto">
+                    <i data-lucide="shield-alert" class="w-8 h-8"></i>
+                </div>
+                <h3 class="text-lg font-bold text-white mb-2 lg:w-4/5 mx-auto">Fica agressivo com visitas</h3>
+            </div>
+
+            <div class="glass-card p-6 flex flex-col items-center text-center lg:-ml-8 w-full lg:w-[120%]">
+                <div
+                    class="w-16 h-16 rounded-full bg-red-500/10 flex items-center justify-center mb-4 text-red-400 mx-auto">
+                    <i data-lucide="home" class="w-8 h-8"></i>
+                </div>
+                <h3 class="text-lg font-bold text-white mb-2">Não obedece dentro de casa</h3>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SEÇÃO 4 — QUEM GUIA A TRANSFORMAÇÃO -->
+    <section class="py-20 px-6 bg-black/40 border-y border-yellow-500/5">
+        <div class="w-full max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-10">
+            <div class="flex-shrink-0">
+                <div
+                    class="relative w-48 h-48 md:w-56 md:h-56 rounded-full p-1 bg-gradient-to-br from-gold to-black shadow-[0_0_30px_rgba(255,215,0,0.2)]">
+                    <img src="./assets/images/criador.png" alt="Especialista em Adestramento"
+                        class="w-full h-full object-cover rounded-full border-4 border-black" loading="lazy">
+                </div>
+            </div>
+            <div class="text-center md:text-left">
+                <h2 class="title-h2 !text-left !mb-4">Quem guia a <span class="text-gold">transformação?</span></h2>
+                <p class="text-gray-300 text-lg leading-relaxed">
+                    Com anos de experiência em comportamento canino, desenvolvi uma metodologia que elimina o estresse.
+                    Não se trata de punição, mas de comunicação correta. O sucesso do meu método, o "Adestramento Sem
+                    Mistério", está na simplicidade: ensinar a você a linguagem que o seu cachorro já compreende
+                    instintivamente.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 5 — COMO FUNCIONA O MÉTODO -->
+    <section class="py-20 px-6 w-full max-w-6xl mx-auto">
+        <h2 class="title-h2 text-center mb-16">O caminho simples para transformar o <span
+                class="text-gold">comportamento do seu cachorro</span></h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="glass-card p-8 flex items-start gap-4 hover:border-gold/50 transition-colors">
+                <div class="bg-yellow-500/10 p-3 rounded-lg text-gold shrink-0">
+                    <i data-lucide="message-square" class="w-8 h-8"></i>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold text-white mb-2">Comunicação correta com o cão</h3>
+                    <p class="text-gray-400">Aprenda a "falar" de uma maneira que seu pet entenda de primeira, sem
+                        ambiguidades.</p>
+                </div>
+            </div>
+
+            <div class="glass-card p-8 flex items-start gap-4 hover:border-gold/50 transition-colors">
+                <div class="bg-yellow-500/10 p-3 rounded-lg text-gold shrink-0">
+                    <i data-lucide="crown" class="w-8 h-8"></i>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold text-white mb-2">Liderança sem agressividade</h3>
+                    <p class="text-gray-400">Assuma o controle da situação de forma calma e assertiva, gerando respeito
+                        em vez de medo.</p>
+                </div>
+            </div>
+
+            <div class="glass-card p-8 flex items-start gap-4 hover:border-gold/50 transition-colors">
+                <div class="bg-yellow-500/10 p-3 rounded-lg text-gold shrink-0">
+                    <i data-lucide="check-circle" class="w-8 h-8"></i>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold text-white mb-2">Comandos claros</h3>
+                    <p class="text-gray-400">Técnicas diretas para estabelecer obediência instantânea (sentar, ficar,
+                        vir) em qualquer ambiente.</p>
+                </div>
+            </div>
+
+            <div class="glass-card p-8 flex items-start gap-4 hover:border-gold/50 transition-colors">
+                <div class="bg-yellow-500/10 p-3 rounded-lg text-gold shrink-0">
+                    <i data-lucide="trending-up" class="w-8 h-8"></i>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold text-white mb-2">Resultados consistentes</h3>
+                    <p class="text-gray-400">Transforme melhorias temporárias em um comportamento exemplar e duradouro
+                        no dia a dia.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 6 — O QUE VOCÊ VAI RECEBER -->
+    <section class="py-20 px-6 bg-black/60 relative border-y border-yellow-500/5">
+        <div class="w-full max-w-4xl mx-auto">
+            <h2 class="title-h2 text-center mb-12">O que você recebe <span class="text-gold">ao acessar</span></h2>
+
+            <div class="glass-card p-8 md:p-12 mb-10 border-gold/30">
+                <ul class="space-y-6 text-lg text-gray-200">
+                    <li class="flex items-center gap-4">
+                        <i data-lucide="check" class="w-6 h-6 text-green-400 shrink-0"></i>
+                        Acesso ao método completo (Passo a Passo)
+                    </li>
+                    <li class="flex items-center gap-4">
+                        <i data-lucide="check" class="w-6 h-6 text-green-400 shrink-0"></i>
+                        Treinamentos práticos on-line
+                    </li>
+                    <li class="flex items-center gap-4">
+                        <i data-lucide="check" class="w-6 h-6 text-green-400 shrink-0"></i>
+                        Técnicas imediatas para parar latidos
+                    </li>
+                    <li class="flex items-center gap-4">
+                        <i data-lucide="check" class="w-6 h-6 text-green-400 shrink-0"></i>
+                        Plano para corrigir o comportamento agressivo
+                    </li>
+                    <li class="flex items-center gap-4">
+                        <i data-lucide="check" class="w-6 h-6 text-green-400 shrink-0"></i>
+                        Como fazer o cachorro obedecer comandos vitais
+                    </li>
+                    <li class="flex items-center gap-4">
+                        <i data-lucide="check" class="w-6 h-6 text-green-400 shrink-0"></i>
+                        O segredo de passear sem puxar a guia
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 7 — PROVAS SOCIAIS -->
+    <section class="py-20 px-6 w-full max-w-6xl mx-auto">
+        <h2 class="title-h2 text-center mb-16">Histórias de <span class="text-gold">sucesso reais</span></h2>
+
+        <!-- Horizontal WhatsApp Prints format, 4 items displayed -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+            <div class="glass-card p-4 overflow-hidden border-yellow-500/20">
+                <img src="./assets/images/Captura de tela 2026-03-06 114450.png" alt="Depoimento WhatsApp 1"
+                    class="w-full h-auto object-cover rounded shadow-lg" loading="lazy">
+            </div>
+            <div class="glass-card p-4 overflow-hidden border-yellow-500/20">
+                <img src="./assets/images/Captura de tela 2026-03-05 223159.png" alt="Depoimento WhatsApp 2"
+                    class="w-full h-auto object-cover rounded shadow-lg" loading="lazy">
+            </div>
+            <div class="glass-card p-4 overflow-hidden border-yellow-500/20">
+                <img src="./assets/images/zap 2.png" alt="Depoimento WhatsApp 3"
+                    class="w-full h-auto object-cover rounded shadow-lg" loading="lazy">
+            </div>
+            <div class="glass-card p-4 overflow-hidden border-yellow-500/20">
+                <img src="./assets/images/Captura de tela 2026-03-12 155050.png" alt="Print WhatsApp Felipe Costa"
+                    class="w-full h-auto object-cover rounded shadow-lg" loading="lazy">
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 7.5 — MAIS PROVAS SOCIAIS -->
+    <section class="py-20 px-6 bg-black/40 border-y border-yellow-500/5">
+        <h2 class="title-h2 text-center mb-16">Mais donos que transformaram o <span class="text-gold">comportamento dos
+                seus cães</span></h2>
+
+        <div class="w-full max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+            <!-- Testimonial 1 -->
+            <div class="glass-card p-6 flex flex-col justify-between border-yellow-500/10 hover:border-gold/30">
+                <div class="flex text-gold mb-3 text-lg">★★★★★</div>
+                <p class="text-gray-300 italic text-sm mb-6 flex-grow">"Meu cachorro puxava muito a guia e agora caminha
+                    tranquilo ao meu lado."</p>
+                <div class="flex items-center gap-3">
+                    <img src="./assets/images/Mariana S.png" alt="Mariana S."
+                        class="w-10 h-10 rounded-full object-cover object-center border-2 border-yellow-500 shadow-sm shrink-0"
+                        loading="lazy">
+                    <span class="text-sm font-bold text-gray-400">Mariana S.</span>
+                </div>
+            </div>
+
+            <!-- Testimonial 2 -->
+            <div class="glass-card p-6 flex flex-col justify-between border-yellow-500/10 hover:border-gold/30">
+                <div class="flex text-gold mb-3 text-lg">★★★★★</div>
+                <p class="text-gray-300 italic text-sm mb-6 flex-grow">"Em poucos dias ele já começou a obedecer
+                    comandos básicos."</p>
+                <div class="flex items-center gap-3">
+                    <img src="./assets/images/Rafael C.png" alt="Rafael C."
+                        class="w-10 h-10 rounded-full object-cover object-center border-2 border-yellow-500 shadow-sm shrink-0"
+                        loading="lazy">
+                    <span class="text-sm font-bold text-gray-400">Rafael C.</span>
+                </div>
+            </div>
+
+            <!-- Testimonial 3 -->
+            <div class="glass-card p-6 flex flex-col justify-between border-yellow-500/10 hover:border-gold/30">
+                <div class="flex text-gold mb-3 text-lg">★★★★★</div>
+                <p class="text-gray-300 italic text-sm mb-6 flex-grow">"Eu não acreditava que funcionaria, mas meu
+                    cachorro mudou completamente."</p>
+                <div class="flex items-center gap-3">
+                    <img src="./assets/images/Carla M.png" alt="Carla M."
+                        class="w-10 h-10 rounded-full object-cover object-center border-2 border-yellow-500 shadow-sm shrink-0"
+                        loading="lazy">
+                    <span class="text-sm font-bold text-gray-400">Carla M.</span>
+                </div>
+            </div>
+
+            <!-- Testimonial 4 -->
+            <div class="glass-card p-6 flex flex-col justify-between border-yellow-500/10 hover:border-gold/30">
+                <div class="flex text-gold mb-3 text-lg">★★★★★</div>
+                <p class="text-gray-300 italic text-sm mb-6 flex-grow">"Finalmente consigo receber visitas sem ele latir
+                    o tempo todo."</p>
+                <div class="flex items-center gap-3">
+                    <img src="./assets/images/Diego R.png" alt="Diego R."
+                        class="w-10 h-10 rounded-full object-cover object-center border-2 border-yellow-500 shadow-sm shrink-0"
+                        loading="lazy">
+                    <span class="text-sm font-bold text-gray-400">Diego R.</span>
+                </div>
+            </div>
+
+            <!-- Testimonial 5 -->
+            <div class="glass-card p-6 flex flex-col justify-between border-yellow-500/10 hover:border-gold/30">
+                <div class="flex text-gold mb-3 text-lg">★★★★★</div>
+                <p class="text-gray-300 italic text-sm mb-6 flex-grow">"Passear com meu cachorro agora é muito mais
+                    tranquilo."</p>
+                <div class="flex items-center gap-3">
+                    <img src="./assets/images/Fernanda L.png" alt="Fernanda L."
+                        class="w-10 h-10 rounded-full object-cover object-center border-2 border-yellow-500 shadow-sm shrink-0"
+                        loading="lazy">
+                    <span class="text-sm font-bold text-gray-400">Fernanda L.</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-12">
+            <a href="#offer"
+                class="inline-block bg-yellow-400 text-black btn-gold font-heading font-black text-lg md:text-xl rounded-xl px-10 py-5 hover:bg-yellow-300 hover:scale-[1.02] shadow-[0_0_20px_rgba(255,215,0,0.3)] transition-all uppercase w-full sm:w-auto">
+                QUERO TRANSFORMAR O COMPORTAMENTO DO MEU CACHORRO
+            </a>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 8 — COMPARAÇÃO -->
+    <section class="py-20 px-6 bg-black/50 border-y border-yellow-500/5">
+        <h2 class="title-h2 text-center mb-16">Por que o método tradicional <span class="text-red-400">falha?</span>
+        </h2>
+
+        <div class="w-full max-w-5xl mx-auto flex flex-col md:flex-row gap-8">
+            <div class="flex-1 bg-red-950/20 border border-red-500/30 rounded-2xl p-8 text-center sm:text-left">
+                <h3 class="text-2xl font-bold text-red-300 mb-6 border-b border-red-500/20 pb-4">Treinamento Tradicional
+                </h3>
+                <ul class="space-y-4 text-gray-400">
+                    <li class="flex items-start gap-3"><i data-lucide="x"
+                            class="text-red-500 w-5 h-5 shrink-0 mt-0.5"></i> Focado em punição repetitiva</li>
+                    <li class="flex items-start gap-3"><i data-lucide="x"
+                            class="text-red-500 w-5 h-5 shrink-0 mt-0.5"></i> Estressa o cachorro (gera medos)</li>
+                    <li class="flex items-start gap-3"><i data-lucide="x"
+                            class="text-red-500 w-5 h-5 shrink-0 mt-0.5"></i> Adestrador faz, dono fica sem saber reagir
+                    </li>
+                    <li class="flex items-start gap-3"><i data-lucide="x"
+                            class="text-red-500 w-5 h-5 shrink-0 mt-0.5"></i> Custo alto por sessões presencias (mensal)
+                    </li>
+                </ul>
+            </div>
+
+            <div class="hidden md:flex flex-col justify-center items-center font-black text-2xl text-gray-600">VS</div>
+
+            <div
+                class="flex-1 glass-card border-gold/50 shadow-[0_0_30px_rgba(255,215,0,0.1)] p-8 text-center sm:text-left">
+                <h3 class="text-2xl font-black text-gold mb-6 border-b border-yellow-500/20 pb-4">Adestramento Sem
+                    Mistério</h3>
+                <ul class="space-y-4 text-gray-200">
+                    <li class="flex items-start gap-3"><i data-lucide="check"
+                            class="text-green-400 w-5 h-5 shrink-0 mt-0.5"></i> Focado na linguam que ele entende</li>
+                    <li class="flex items-start gap-3"><i data-lucide="check"
+                            class="text-green-400 w-5 h-5 shrink-0 mt-0.5"></i> Instala calma e segurança no cachorro
+                    </li>
+                    <li class="flex items-start gap-3"><i data-lucide="check"
+                            class="text-green-400 w-5 h-5 shrink-0 mt-0.5"></i> Você mesmo conduz a transformação em
+                        casa</li>
+                    <li class="flex items-start gap-3"><i data-lucide="check"
+                            class="text-green-400 w-5 h-5 shrink-0 mt-0.5"></i> Pagamento único e acesso contínuo</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 8.5 — O PRODUTO POR DENTRO -->
+    <section class="py-20 px-6 w-full max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="title-h2">Veja como funciona <span class="text-gold">por dentro</span></h2>
+            <p class="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+                O método é entregue em uma plataforma simples onde você aprende passo a passo como treinar seu cachorro.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
+            <!-- Mockups/Imagens -->
+            <div class="grid grid-cols-2 gap-4">
+                <div
+                    class="p-1 glass-card border-yellow-500/20 transform hover:-translate-y-2 transition-transform duration-300 overflow-hidden flex items-center justify-center bg-black/50">
+                    <img src="./assets/images/HOME DO APP.png" alt="Tela do App"
+                        class="w-full h-auto rounded shadow-lg object-contain phone" loading="lazy">
+                </div>
+                <div
+                    class="p-1 glass-card border-yellow-500/20 transform translate-y-6 hover:translate-y-4 transition-transform duration-300 overflow-hidden flex items-center justify-center bg-black/50">
+                    <img src="./assets/images/HOME DO APP PARTE 2.png" alt="Módulo de treinamento"
+                        class="w-full h-auto rounded shadow-lg object-contain phone" loading="lazy">
+                </div>
+                <div
+                    class="p-1 glass-card border-yellow-500/20 transform hover:-translate-y-2 transition-transform duration-300 overflow-hidden flex items-center justify-center bg-black/50">
+                    <img src="./assets/images/RAÇAS CACHORRO.png" alt="Aula de adestramento"
+                        class="w-full h-auto rounded shadow-lg object-contain phone" loading="lazy">
+                </div>
+                <div
+                    class="p-1 glass-card border-yellow-500/20 transform translate-y-6 hover:translate-y-4 transition-transform duration-300 overflow-hidden flex items-center justify-center bg-black/50">
+                    <img src="./assets/images/RAÇAS GATOS.png" alt="Lista de técnicas"
+                        class="w-full h-auto rounded shadow-lg object-contain phone" loading="lazy">
+                </div>
+            </div>
+
+            <!-- Benefícios -->
+            <div class="glass-card p-10 border-gold/20 lg:ml-8 mt-10 lg:mt-0">
+                <ul class="space-y-6 text-lg text-gray-200">
+                    <li class="flex items-start gap-4">
+                        <div class="bg-yellow-500/10 p-2 rounded-lg text-gold shrink-0 mt-1">
+                            <i data-lucide="check" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <strong class="text-white block">Acesso imediato após a compra</strong>
+                            <span class="text-sm text-gray-400">Você já pode começar hoje a treinar.</span>
+                        </div>
+                    </li>
+                    <li class="flex items-start gap-4">
+                        <div class="bg-yellow-500/10 p-2 rounded-lg text-gold shrink-0 mt-1">
+                            <i data-lucide="check" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <strong class="text-white block">Treinamentos organizados passo a passo</strong>
+                            <span class="text-sm text-gray-400">Do básico ao avançado sem mistério.</span>
+                        </div>
+                    </li>
+                    <li class="flex items-start gap-4">
+                        <div class="bg-yellow-500/10 p-2 rounded-lg text-gold shrink-0 mt-1">
+                            <i data-lucide="check" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <strong class="text-white block">Técnicas simples de aplicar no dia a dia</strong>
+                            <span class="text-sm text-gray-400">Não precisa horas de dedicação.</span>
+                        </div>
+                    </li>
+                    <li class="flex items-start gap-4">
+                        <div class="bg-yellow-500/10 p-2 rounded-lg text-gold shrink-0 mt-1">
+                            <i data-lucide="check" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <strong class="text-white block">Método feito para iniciantes</strong>
+                            <span class="text-sm text-gray-400">Qualquer tutor consegue aplicar.</span>
+                        </div>
+                    </li>
+                </ul>
+
+                <a href="#offer"
+                    class="mt-10 block w-full bg-yellow-400 text-black btn-gold font-heading font-black text-lg text-center rounded-xl px-6 py-5 hover:bg-yellow-300 hover:scale-[1.02] shadow-[0_0_20px_rgba(255,215,0,0.3)] transition-all uppercase">
+                    QUERO ACESSAR AGORA
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SEÇÃO 9 — OFERTA -->
+    <section id="offer" class="py-24 px-6 w-full max-w-4xl mx-auto text-center relative z-10">
+        <h2 class="title-h2 mb-12">Acesso <span class="text-gold">Premium</span></h2>
+
+        <div
+            class="glass-card p-10 md:p-14 border-2 border-gold relative overflow-hidden shadow-[0_0_60px_rgba(255,215,0,0.15)] bg-black/80">
+            <h3 class="font-heading font-black text-3xl md:text-4xl text-white mb-4">Adestramento Sem Mistério</h3>
+            <p class="text-gray-400 font-medium uppercase tracking-widest text-sm mb-8">Treinamento Online Completo</p>
+
+            <div class="py-8 border-y border-yellow-500/20 my-8">
+                <p class="text-red-400 font-semibold line-through text-xl mb-1">De R$ 97,00</p>
+                <p class="text-gray-300 font-medium text-lg mb-2">Por apenas</p>
+                <div class="font-heading font-black flex justify-center items-start text-gold">
+                    <span class="text-3xl mt-2">R$</span>
+                    <span class="text-7xl md:text-8xl leading-none">48</span>
+                    <span class="text-3xl mt-2">,41</span>
+                </div>
+            </div>
+
+            <a href="https://go.hotmart.com/V104248611V" target="_blank"
+                class="block w-full bg-yellow-400 text-black btn-gold font-heading font-black text-xl rounded-xl px-4 py-6 shadow-xl hover:bg-yellow-300 hover:-translate-y-1 transition-all duration-300 uppercase tracking-widest">
+                QUERO ACESSO IMEDIATO
+            </a>
+
+            <div class="flex items-center justify-center gap-2 mt-6 text-gray-500 text-sm font-medium">
+                <i data-lucide="lock" class="w-4 h-4"></i>
+                Compra 100% segura e acesso liberado na hora.
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 10 — GARANTIA -->
+    <section class="py-12 px-6 w-full max-w-3xl mx-auto">
+        <div
+            class="flex flex-col items-center text-center p-8 bg-black/40 border border-green-500/20 rounded-2xl shadow-[0_0_20px_rgba(74,222,128,0.05)]">
+            <i data-lucide="shield-check" class="w-16 h-16 text-green-400 mb-4"></i>
+            <h3 class="text-xl font-bold text-white mb-2">Teste por 7 dias sem risco.</h3>
+            <p class="text-gray-400 leading-relaxed">
+                Se você não gostar do método, não ver os resultados iniciais no seu pet ou por qualquer outro motivo,
+                <strong>devolvemos 100% do seu dinheiro</strong>. Sem perguntas, enviando apenas um email.
+            </p>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 11 — QUIZ CALLOUT -->
+    <section id="quiz"
+        class="py-24 px-6 bg-gradient-to-br from-yellow-500/10 to-transparent border-t border-yellow-500/20 text-center relative z-10">
+        <div class="max-w-3xl mx-auto">
+            <h2 class="title-h2 !mb-6">Descubra em 30 segundos por que seu cachorro <span class="text-gold">se comporta
+                    assim</span></h2>
+            <p class="text-xl text-gray-300 mb-8 leading-relaxed">
+                Responda algumas perguntas rápidas e descubra qual é o perfil do seu cachorro e qual método funciona
+                melhor para ele.
+            </p>
+
+            <ul class="text-left max-w-xl mx-auto mb-10 space-y-4 text-gray-200 text-lg">
+                <li class="flex items-start gap-4">
+                    <i data-lucide="check-circle-2" class="w-6 h-6 text-gold shrink-0 mt-0.5"></i>
+                    Descubra o que realmente está causando o comportamento do seu cachorro
+                </li>
+                <li class="flex items-start gap-4">
+                    <i data-lucide="check-circle-2" class="w-6 h-6 text-gold shrink-0 mt-0.5"></i>
+                    Identifique o perfil comportamental do seu pet
+                </li>
+                <li class="flex items-start gap-4">
+                    <i data-lucide="check-circle-2" class="w-6 h-6 text-gold shrink-0 mt-0.5"></i>
+                    Receba a melhor estratégia para corrigir isso
+                </li>
+            </ul>
+
+            <a href="https://xn--quizadestramentosemmistrio-xlc.online" target="_self"
+                class="inline-flex items-center justify-center gap-3 bg-yellow-400 text-black btn-gold font-heading font-black text-lg md:text-xl rounded-xl px-10 py-5 hover:bg-yellow-300 hover:scale-[1.03] transition-all duration-300 uppercase shadow-[0_0_30px_rgba(255,215,0,0.4)]">
+                <i data-lucide="clipboard-list" class="w-6 h-6"></i>
+                FAZER TESTE DO MEU CACHORRO
+            </a>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 12 — FAQ -->
+    <section class="py-20 px-6 w-full max-w-4xl mx-auto">
+        <h2 class="title-h2 text-center mb-12">Perguntas <span class="text-gold">Frequentes</span></h2>
+
+        <div class="space-y-4">
+            <details class="group glass-card p-6 py-4 cursor-pointer">
+                <summary class="flex justify-between items-center font-bold text-lg text-white outline-none">
+                    Funciona para qualquer raça?
+                    <span class="transition group-open:rotate-180">
+                        <i data-lucide="chevron-down" class="text-gold"></i>
+                    </span>
+                </summary>
+                <p class="text-gray-400 mt-4 leading-relaxed pl-2 border-l-2 border-gold/50">
+                    Sim! O método baseia-se na psicologia canina fundamental que engloba todas as raças, misturas e
+                    portes.
+                </p>
+            </details>
+
+            <details class="group glass-card p-6 py-4 cursor-pointer">
+                <summary class="flex justify-between items-center font-bold text-lg text-white outline-none">
+                    Funciona para cachorro adulto?
+                    <span class="transition group-open:rotate-180">
+                        <i data-lucide="chevron-down" class="text-gold"></i>
+                    </span>
+                </summary>
+                <p class="text-gray-400 mt-4 leading-relaxed pl-2 border-l-2 border-gold/50">
+                    Absolutamente. Cães adultos formam novos hábitos mais rápido do que você imagina se você utilizar a
+                    comunicação correta. Nunca é tarde para iniciar.
+                </p>
+            </details>
+
+            <details class="group glass-card p-6 py-4 cursor-pointer">
+                <summary class="flex justify-between items-center font-bold text-lg text-white outline-none">
+                    Preciso ter experiência com adestramento?
+                    <span class="transition group-open:rotate-180">
+                        <i data-lucide="chevron-down" class="text-gold"></i>
+                    </span>
+                </summary>
+                <p class="text-gray-400 mt-4 leading-relaxed pl-2 border-l-2 border-gold/50">
+                    Nenhuma. O treinamento foi feito do absoluto zero para tutores e pais de pets normais, com o passo a
+                    passo simplificado, sem termos técnicos complicados.
+                </p>
+            </details>
+
+            <details class="group glass-card p-6 py-4 cursor-pointer">
+                <summary class="flex justify-between items-center font-bold text-lg text-white outline-none">
+                    Como recebo o acesso?
+                    <span class="transition group-open:rotate-180">
+                        <i data-lucide="chevron-down" class="text-gold"></i>
+                    </span>
+                </summary>
+                <p class="text-gray-400 mt-4 leading-relaxed pl-2 border-l-2 border-gold/50">
+                    Assim que o pagamento for aprovado, o acesso ao portal de alunos chegará automaticamente no email
+                    cadastrado durante a compra. Se for no PIX ou Cartão, o acesso é imediato!
+                </p>
+            </details>
+        </div>
+    </section>
+
+    <!-- SEÇÃO FINAL — CTA -->
+    <section class="py-24 px-6 border-t border-yellow-500/20 text-center relative z-10 bg-black/60">
+        <div class="ambient-glow opacity-30 top-1/2 -translate-y-1/2"></div>
+        <div class="relative z-10">
+            <h2 class="title-h2">A transformação do comportamento do seu cachorro <span class="text-gold">começa
+                    hoje.</span></h2>
+            <a href="#offer"
+                class="inline-block mt-8 bg-yellow-400 text-black btn-gold font-heading font-black text-xl rounded-xl px-12 py-6 shadow-[0_0_40px_rgba(255,215,0,0.5)] hover:bg-yellow-300 hover:scale-[1.05] transition-all duration-300 uppercase tracking-widest">
+                COMEÇAR AGORA
+            </a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-12 border-t border-yellow-500/10 text-center bg-black">
+        <p class="text-gray-500 text-sm font-medium">
+            © 2024 Adestramento Sem Mistério. Todos os direitos reservados.
+        </p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>

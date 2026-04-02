@@ -2,6 +2,30 @@
 <html lang="pt-BR" class="scroll-smooth">
 
 <head>
+        <!-- Meta Pixel Code -->
+    <script>
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod ?
+        n.callMethod.apply(n,arguments) : n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;
+        n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];
+        t=b.createElement(e);t.async=!0;
+        t.src=v;
+        s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)
+        }(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+
+        fbq('init', '777233474933980'); // SEU PIXEL
+        fbq('track', 'PageView');
+    </script>
+
+    <noscript>
+        <img height="1" width="1" style="display:none"
+        src="https://www.facebook.com/tr?id=777233474933980&ev=PageView&noscript=1"/>
+    </noscript>
+    <!-- End Meta Pixel Code -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adestramento Sem Mistério - Método Comprovado</title>
@@ -210,7 +234,7 @@
 
         <h1
             class="font-heading text-4xl md:text-5xl lg:text-5xl font-black text-white leading-tight mb-6 tracking-tight uppercase">
-            SEU CACHORRO NÃO É TEIMOSO.<br>
+            SEU PET NÃO É TEIMOSO.<br>
             <span class="text-yellow-400 mt-2 block">ELE SÓ PRECISA DE UMA LIDERANÇA CLARA.</span>
         </h1>
 
@@ -230,10 +254,12 @@
             </a>
 
             <!-- Botão Principal (COMPRA) - Fica em cima no mobile, direita no desktop -->
-            <a href="https://go.hotmart.com/V104248611V?src=hero" target="_blank"
-                class="order-1 sm:order-2 w-full sm:w-1/2 flex items-center justify-center bg-yellow-400 text-black font-heading font-black md:text-base rounded-xl px-4 py-4 md:py-5 hover:scale-105 shadow-[0_0_30px_rgba(255,215,0,0.4)] transition-all duration-300 text-center uppercase btn-gold">
-                QUERO TRANSFORMAR O COMPORTAMENTO DO MEU PET
-            </a>
+         <a href="https://go.hotmart.com/V104248611V?src=hero"
+   onclick="fbq('track', 'InitiateCheckout'); setTimeout(function(){ window.location.href=this.href }.bind(this), 500); return false;"
+   target="_blank"
+   class="order-1 sm:order-2 w-full sm:w-1/2 flex items-center justify-center bg-yellow-400 text-black font-heading font-black md:text-base rounded-xl px-4 py-4 md:py-5 hover:scale-105 shadow-[0_0_30px_rgba(255,215,0,0.4)] transition-all duration-300 text-center uppercase btn-gold">
+   QUERO TRANSFORMAR O COMPORTAMENTO DO MEU PET
+</a>
         </div>
 
         <!-- PROVAS -->
@@ -664,10 +690,12 @@
                 </div>
             </div>
 
-            <a href="https://go.hotmart.com/V104248611V" target="_blank"
-                class="block w-full bg-yellow-400 text-black btn-gold font-heading font-black text-xl rounded-xl px-4 py-6 shadow-xl hover:bg-yellow-300 hover:-translate-y-1 transition-all duration-300 uppercase tracking-widest">
-                QUERO ACESSO IMEDIATO
-            </a>
+      <a href="https://go.hotmart.com/V104248611V?src=hero"
+   onclick="fbq('track', 'InitiateCheckout'); setTimeout(function(){ window.location.href=this.href }.bind(this), 500); return false;"
+   target="_blank"
+   class="order-1 sm:order-2 w-full sm:w-1/2 flex items-center justify-center bg-yellow-400 text-black font-heading font-black md:text-base rounded-xl px-4 py-4 md:py-5 hover:scale-105 shadow-[0_0_30px_rgba(255,215,0,0.4)] transition-all duration-300 text-center uppercase btn-gold">
+   QUERO TRANSFORMAR O COMPORTAMENTO DO MEU PET
+</a>
 
             <div class="flex items-center justify-center gap-2 mt-6 text-gray-500 text-sm font-medium">
                 <i data-lucide="lock" class="w-4 h-4"></i>

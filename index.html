@@ -42,11 +42,12 @@
   <style>
     :root {
       --gold: #F5C518;
-      --gold-dim: rgba(245,197,24,0.15);
-      --gold-glow: rgba(245,197,24,0.35);
-      --bg: #0A0A0A;
-      --surface: rgba(255,255,255,0.04);
-      --border: rgba(255,255,255,0.08);
+      --gold-strong: #FFD84D;
+      --gold-dim: rgba(245,197,24,0.18);
+      --gold-glow: rgba(245,197,24,0.45);
+      --bg: #050505;
+      --surface: rgba(255,255,255,0.06);
+      --border: rgba(255,255,255,0.12);
     }
 
     * { box-sizing: border-box; }
@@ -54,8 +55,8 @@
     html { scroll-behavior: smooth; }
 
     body {
-      background-color: var(--bg);
-      color: #E5E5E5;
+      background: radial-gradient(circle at top, rgba(245,197,24,0.08), transparent 60%), #050505;
+      color: #F0F0F0;
       font-family: 'Barlow', sans-serif;
       font-size: 17px;
       line-height: 1.65;
@@ -72,6 +73,7 @@
       font-size: clamp(2.8rem, 8vw, 5.5rem);
       letter-spacing: 0.03em;
       line-height: 1.0;
+      text-shadow: 0 0 40px rgba(245,197,24,0.15);
     }
     .heading-lg {
       font-family: 'Bebas Neue', sans-serif;
@@ -88,36 +90,39 @@
 
     /* CARDS */
     .card {
-      background: var(--surface);
-      border: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.03));
+      border: 1px solid rgba(255,255,255,0.14);
       border-radius: 16px;
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
       transition: border-color 0.25s, transform 0.25s;
     }
-    .card:hover { border-color: rgba(245,197,24,0.3); transform: translateY(-2px); }
-    .card-gold { border-color: rgba(245,197,24,0.45); box-shadow: 0 0 40px var(--gold-glow); }
+    .card:hover { border-color: rgba(245,197,24,0.35); transform: translateY(-2px); }
+    .card-gold { border-color: rgba(245,197,24,0.5); box-shadow: 0 0 50px var(--gold-glow); }
 
     /* BUTTONS */
     .btn-primary {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      background: var(--gold);
+      background: linear-gradient(135deg, #F5C518, #FFD84D);
       color: #000;
       font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.25rem;
-      letter-spacing: 0.06em;
-      border-radius: 12px;
-      padding: 18px 36px;
-      transition: transform 0.2s, box-shadow 0.2s;
-      box-shadow: 0 0 30px var(--gold-glow);
+      font-size: 1.3rem;
+      letter-spacing: 0.08em;
+      border-radius: 14px;
+      padding: 20px 38px;
+      font-weight: bold;
+      transition: all 0.2s ease;
+      box-shadow: 0 10px 40px rgba(245,197,24,0.35);
       cursor: pointer;
       text-decoration: none;
       width: 100%;
       text-align: center;
     }
     .btn-primary:hover {
-      transform: scale(1.03);
-      box-shadow: 0 0 50px rgba(245,197,24,0.55);
+      transform: scale(1.05);
+      box-shadow: 0 15px 60px rgba(245,197,24,0.6);
     }
     .btn-primary.pulse { animation: pulse 2.2s infinite; }
 
@@ -217,8 +222,9 @@
       font-family: 'Bebas Neue', sans-serif;
       font-size: clamp(5rem, 15vw, 8rem);
       line-height: 1;
-      color: var(--gold);
+      color: var(--gold-strong);
       letter-spacing: -0.02em;
+      text-shadow: 0 0 30px rgba(245,197,24,0.3);
     }
 
     /* FAQ */
@@ -286,12 +292,12 @@
     </div>
 
     <h1 class="heading-xl text-white mb-5 reveal">
-      O PROBLEMA <span class="text-gold">NÃO É SEU CACHORRO.</span><br>
+      O PROBLEMA <span style="color: var(--gold-strong);">NÃO É SEU CACHORRO.</span><br>
       É A FORMA COMO<br>VOCÊ ESTÁ TENTANDO<br>
       <span style="color:#fff">EDUCAR ELE.</span>
     </h1>
 
-    <p class="text-xl text-gray-300 max-w-2xl mx-auto mb-10 reveal" style="transition-delay:0.1s">
+    <p class="text-xl max-w-2xl mx-auto mb-10 reveal" style="color:#E8E8E8; transition-delay:0.1s">
       Descubra o método simples que faz seu cachorro obedecer <strong class="text-white">sem agressividade</strong> — mesmo que ele ignore tudo hoje.
     </p>
 
@@ -318,7 +324,7 @@
     </div>
 
     <!-- MICRO-PROVAS -->
-    <div class="flex flex-wrap justify-center gap-x-8 gap-y-3 text-sm font-semibold text-gray-400 reveal" style="transition-delay:0.25s">
+    <div class="flex flex-wrap justify-center gap-x-8 gap-y-3 text-sm font-semibold reveal" style="color:#ccc; transition-delay:0.25s">
       <span>✓ Método simples e comprovado</span>
       <span>✓ Funciona para qualquer raça</span>
       <span>✓ Acesso imediato após a compra</span>
@@ -373,7 +379,7 @@
     </div>
 
     <div class="card p-8 border-l-4 reveal" style="border-left-color: var(--gold);">
-      <p class="text-lg text-gray-200 leading-relaxed">
+      <p class="text-lg leading-relaxed" style="color:#ddd;">
         <strong class="text-white">Se você se identificou com ao menos um desses pontos</strong>, saiba que não é culpa sua — e nem do seu cachorro. O problema é que ninguém te ensinou a falar a língua que ele entende. É isso que vamos mudar.
       </p>
     </div>
@@ -400,7 +406,7 @@
       <div>
         <span class="badge mb-4 inline-block">Especialista em Comportamento Canino</span>
         <h2 class="heading-md text-white mb-4">Quem vai guiar sua <span class="text-gold">transformação?</span></h2>
-        <p class="text-gray-300 text-lg leading-relaxed">
+        <p class="text-lg leading-relaxed" style="color:#ddd;">
           Com anos de experiência em comportamento canino, desenvolvi uma metodologia que elimina o estresse — tanto para o tutor quanto para o cachorro. O método <strong class="text-white">Adestramento Sem Mistério</strong> é baseado em comunicação, não em punição. O segredo está em ensinar você a linguagem que seu cachorro já entende instintivamente.
         </p>
       </div>
@@ -425,7 +431,7 @@
         <div class="step-num">1</div>
         <div>
           <h3 class="heading-md text-white mb-1">Comunicação correta com o cão</h3>
-          <p class="text-gray-400">Aprenda a "falar" de um jeito que seu pet entenda de primeira, sem ambiguidades. Sinais claros geram obediência imediata.</p>
+          <p style="color:#bbb;">Aprenda a "falar" de um jeito que seu pet entenda de primeira, sem ambiguidades. Sinais claros geram obediência imediata.</p>
         </div>
       </div>
 
@@ -433,7 +439,7 @@
         <div class="step-num">2</div>
         <div>
           <h3 class="heading-md text-white mb-1">Liderança sem agressividade</h3>
-          <p class="text-gray-400">Assuma o controle de forma calma e assertiva. Seu cachorro precisa te respeitar — não te temer.</p>
+          <p style="color:#bbb;">Assuma o controle de forma calma e assertiva. Seu cachorro precisa te respeitar — não te temer.</p>
         </div>
       </div>
 
@@ -441,7 +447,7 @@
         <div class="step-num">3</div>
         <div>
           <h3 class="heading-md text-white mb-1">Comandos claros e consistentes</h3>
-          <p class="text-gray-400">Técnicas diretas para sentar, ficar e vir em qualquer ambiente — com qualquer raça ou idade.</p>
+          <p style="color:#bbb;">Técnicas diretas para sentar, ficar e vir em qualquer ambiente — com qualquer raça ou idade.</p>
         </div>
       </div>
 
@@ -449,7 +455,7 @@
         <div class="step-num">4</div>
         <div>
           <h3 class="heading-md text-white mb-1">Resultados duradouros no dia a dia</h3>
-          <p class="text-gray-400">Transforme melhorias temporárias em comportamento exemplar e permanente. Sem recaídas.</p>
+          <p style="color:#bbb;">Transforme melhorias temporárias em comportamento exemplar e permanente. Sem recaídas.</p>
         </div>
       </div>
 
@@ -544,7 +550,7 @@
 
         <div class="card p-6 flex flex-col reveal">
           <div class="stars mb-3">★★★★★</div>
-          <p class="text-gray-300 italic text-sm flex-grow mb-5">"Meu cachorro puxava muito a guia e agora caminha tranquilo ao meu lado."</p>
+          <p class="italic text-sm flex-grow mb-5" style="color:#ddd;">"Meu cachorro puxava muito a guia e agora caminha tranquilo ao meu lado."</p>
           <div class="flex items-center gap-3">
             <img src="./assets/images/Mariana S.png" alt="Mariana S." class="w-10 h-10 rounded-full object-cover border-2 shrink-0" style="border-color: var(--gold);" loading="lazy">
             <span class="text-sm font-bold text-gray-400">Mariana S.</span>
@@ -553,7 +559,7 @@
 
         <div class="card p-6 flex flex-col reveal" style="transition-delay:0.05s">
           <div class="stars mb-3">★★★★★</div>
-          <p class="text-gray-300 italic text-sm flex-grow mb-5">"Em poucos dias ele já começou a obedecer comandos básicos."</p>
+          <p class="italic text-sm flex-grow mb-5" style="color:#ddd;">"Em poucos dias ele já começou a obedecer comandos básicos."</p>
           <div class="flex items-center gap-3">
             <img src="./assets/images/Rafael C.png" alt="Rafael C." class="w-10 h-10 rounded-full object-cover border-2 shrink-0" style="border-color: var(--gold);" loading="lazy">
             <span class="text-sm font-bold text-gray-400">Rafael C.</span>
@@ -562,7 +568,7 @@
 
         <div class="card p-6 flex flex-col reveal" style="transition-delay:0.1s">
           <div class="stars mb-3">★★★★★</div>
-          <p class="text-gray-300 italic text-sm flex-grow mb-5">"Eu não acreditava que funcionaria, mas meu cachorro mudou completamente."</p>
+          <p class="italic text-sm flex-grow mb-5" style="color:#ddd;">"Eu não acreditava que funcionaria, mas meu cachorro mudou completamente."</p>
           <div class="flex items-center gap-3">
             <img src="./assets/images/Carla M.png" alt="Carla M." class="w-10 h-10 rounded-full object-cover border-2 shrink-0" style="border-color: var(--gold);" loading="lazy">
             <span class="text-sm font-bold text-gray-400">Carla M.</span>
@@ -571,7 +577,7 @@
 
         <div class="card p-6 flex flex-col reveal" style="transition-delay:0.15s">
           <div class="stars mb-3">★★★★★</div>
-          <p class="text-gray-300 italic text-sm flex-grow mb-5">"Finalmente consigo receber visitas sem ele latir o tempo todo."</p>
+          <p class="italic text-sm flex-grow mb-5" style="color:#ddd;">"Finalmente consigo receber visitas sem ele latir o tempo todo."</p>
           <div class="flex items-center gap-3">
             <img src="./assets/images/Diego R.png" alt="Diego R." class="w-10 h-10 rounded-full object-cover border-2 shrink-0" style="border-color: var(--gold);" loading="lazy">
             <span class="text-sm font-bold text-gray-400">Diego R.</span>
@@ -580,7 +586,7 @@
 
         <div class="card p-6 flex flex-col reveal" style="transition-delay:0.2s">
           <div class="stars mb-3">★★★★★</div>
-          <p class="text-gray-300 italic text-sm flex-grow mb-5">"Passear com meu cachorro agora é muito mais tranquilo e prazeroso."</p>
+          <p class="italic text-sm flex-grow mb-5" style="color:#ddd;">"Passear com meu cachorro agora é muito mais tranquilo e prazeroso."</p>
           <div class="flex items-center gap-3">
             <img src="./assets/images/Fernanda L.png" alt="Fernanda L." class="w-10 h-10 rounded-full object-cover border-2 shrink-0" style="border-color: var(--gold);" loading="lazy">
             <span class="text-sm font-bold text-gray-400">Fernanda L.</span>
@@ -773,11 +779,11 @@
     <div class="max-w-3xl mx-auto reveal">
       <span class="badge mb-6 inline-block">⏱ Leva menos de 30 segundos</span>
       <h2 class="heading-lg text-white mb-5">Descubra por que seu cachorro <span class="text-gold">se comporta assim</span></h2>
-      <p class="text-xl text-gray-300 mb-8 leading-relaxed">
+      <p class="text-xl mb-8 leading-relaxed" style="color:#ddd;">
         Responda algumas perguntas rápidas e receba o diagnóstico do perfil do seu pet — e o método ideal para ele.
       </p>
 
-      <ul class="text-left max-w-xl mx-auto mb-10 space-y-4 text-gray-300 text-lg">
+      <ul class="text-left max-w-xl mx-auto mb-10 space-y-4 text-lg" style="color:#ddd;">
         <li class="flex items-start gap-3">
           <span class="text-gold shrink-0">→</span> Descubra o que realmente causa o comportamento do seu cachorro
         </li>
@@ -871,7 +877,7 @@
   <section class="py-24 px-6 text-center relative" style="background: rgba(0,0,0,0.6); border-top: 1px solid rgba(245,197,24,0.15);">
     <div class="max-w-3xl mx-auto relative z-10 reveal">
       <h2 class="heading-lg text-white mb-4">A transformação do comportamento <br>do seu cachorro <span class="text-gold">começa hoje.</span></h2>
-      <p class="text-gray-400 text-lg mb-10">Não espere mais. Cada dia sem o método é mais um dia de estresse — para você e para ele.</p>
+      <p class="text-lg mb-10" style="color:#bbb;">Não espere mais. Cada dia sem o método é mais um dia de estresse — para você e para ele.</p>
       <a href="#oferta"
          class="btn-primary pulse"
          style="display:inline-flex; width:auto; max-width:520px; font-size:1.2rem; padding: 22px 40px;">

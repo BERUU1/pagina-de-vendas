@@ -2,7 +2,20 @@
 <html lang="pt-BR" class="scroll-smooth">
 
 <head>
-        <!-- Meta Pixel Code -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adestramento Sem Mistério - Método Comprovado</title>
+
+    <!-- CLARITY (vem primeiro) -->
+    <script type="text/javascript">
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "w8rjhzhrjh");
+    </script>
+
+    <!-- META PIXEL -->
     <script>
         !function(f,b,e,v,n,t,s)
         {if(f.fbq)return;n=f.fbq=function(){n.callMethod ?
@@ -17,7 +30,7 @@
         }(window, document,'script',
         'https://connect.facebook.net/en_US/fbevents.js');
 
-        fbq('init', '777233474933980'); // SEU PIXEL
+        fbq('init', '777233474933980');
         fbq('track', 'PageView');
     </script>
 
@@ -25,204 +38,17 @@
         <img height="1" width="1" style="display:none"
         src="https://www.facebook.com/tr?id=777233474933980&ev=PageView&noscript=1"/>
     </noscript>
-    <!-- End Meta Pixel Code -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adestramento Sem Mistério - Método Comprovado</title>
 
-    <!-- Fonts -->
+    <!-- FONTS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800;900&family=Inter:wght@400;500;600;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- Tailwind CSS -->
+    <!-- TAILWIND -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        heading: ['Montserrat', 'sans-serif'],
-                    },
-                    colors: {
-                        gold: '#FFD700',
-                    }
-                }
-            }
-        }
-    </script>
-    <!-- CSS (Linking the existing style.css which will have base variables) -->
+
+    <!-- CSS -->
     <link rel="stylesheet" href="style.css">
-    <style>
-        body {
-            background:
-                radial-gradient(circle at 20% 30%, rgba(255, 200, 0, 0.06), transparent 40%),
-                radial-gradient(circle at 80% 70%, rgba(255, 200, 0, 0.05), transparent 40%),
-                radial-gradient(rgba(255, 215, 0, 0.15) 1px, transparent 1px),
-                #050505;
-            background-size: 100% 100%, 100% 100%, 40px 40px, 100% 100%;
-            background-attachment: fixed;
-            color: #d1d5db;
-            /* Default text-gray-300 */
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-
-        section {
-            position: relative;
-        }
-
-        section::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 600px;
-            height: 200px;
-            background: radial-gradient(circle, rgba(255, 200, 0, 0.08), transparent);
-            filter: blur(80px);
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        .hero::before {
-            content: "";
-            position: absolute;
-            top: -200px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 900px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(255, 200, 0, 0.15), transparent 70%);
-            filter: blur(80px);
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        /* Glass Cards Premium */
-        .glass-card {
-            background-color: rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 215, 0, 0.2);
-            border-radius: 1rem;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.25);
-            transition: all 0.3s ease;
-        }
-
-        .glass-card:hover {
-            transform: scale(1.03);
-            box-shadow: 0 10px 40px rgba(255, 215, 0, 0.25);
-            border-color: rgba(255, 215, 0, 0.5);
-        }
-
-        .ambient-glow {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100vw;
-            height: 500px;
-            background: radial-gradient(circle, rgba(255, 215, 0, 0.08) 0%, rgba(0, 0, 0, 0) 60%);
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        .divider {
-            height: 1px;
-            background: linear-gradient(90deg, transparent, #ffd700, transparent);
-            margin: 80px auto;
-            width: 80%;
-            position: relative;
-            opacity: 0.7;
-        }
-
-        .divider::after {
-            content: "✦";
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: #ffd700;
-            background: #050505;
-            padding: 0 10px;
-            font-size: 1.2rem;
-            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
-        }
-
-        .btn-gold {
-            position: relative;
-            overflow: hidden;
-            transition: all .3s ease !important;
-        }
-
-        .btn-gold:hover {
-            transform: translateY(-3px) !important;
-            box-shadow: 0 10px 30px rgba(255, 200, 0, 0.35) !important;
-        }
-
-        .btn-gold::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(120deg, transparent, rgba(255, 255, 255, .4), transparent);
-            animation: shine 4s infinite;
-        }
-
-        @keyframes shine {
-            0% {
-                left: -100%;
-            }
-
-            60% {
-                left: 100%;
-            }
-
-            100% {
-                left: 100%;
-            }
-        }
-
-        .phone {
-            box-shadow: 0 20px 60px rgba(255, 200, 0, 0.15);
-        }
-
-        .title-h2 {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 800;
-            font-size: 2.25rem;
-            color: #ffffff;
-            margin-bottom: 2rem;
-            line-height: 1.2;
-        }
-
-        @media (min-width: 768px) {
-            .title-h2 {
-                font-size: 3rem;
-            }
-        }
-
-        /* Video Container for 16:9 Aspect Ratio */
-        .video-container {
-            position: relative;
-            padding-bottom: 56.25%;
-            /* 16:9 */
-            height: 0;
-            overflow: hidden;
-            max-width: 100%;
-            background: #000;
-            border-radius: 1rem;
-            border: 2px solid rgba(255, 215, 0, 0.3);
-            box-shadow: 0 0 30px rgba(255, 215, 0, 0.1);
-        }
-    </style>
 </head>
 
 <body class="antialiased selection:bg-gold selection:text-black">

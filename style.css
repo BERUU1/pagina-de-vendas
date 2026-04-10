@@ -372,6 +372,39 @@ details[open] .chevron {
 .mt-5 { margin-top: 2.5rem; }
 .mb-4 { margin-bottom: 1.5rem; }
 
+/* ── IMAGENS — CLASSES UTILITÁRIAS ─────────────────────────── */
+.img-main {
+  max-width: 420px;
+  width: 100%;
+  margin: 0 auto;
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+.img-medium {
+  max-width: 340px;
+  width: 100%;
+  margin: 0 auto;
+  border-radius: 12px;
+}
+
+.img-small {
+  max-width: 260px;
+  width: 100%;
+  margin: 0 auto;
+  border-radius: 10px;
+}
+
+.img-proof {
+  max-width: 220px;
+  width: 100%;
+  margin: 0 auto;
+  border-radius: 12px;
+}
+
+.img-soft    { opacity: 0.92; }
+.img-spacing { margin-top: 20px; margin-bottom: 20px; }
+
 /* ── RESPONSIVO ─────────────────────────────────────────────── */
 @media (max-width: 768px) {
   html { font-size: 15px; }

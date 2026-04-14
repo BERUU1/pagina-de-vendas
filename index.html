@@ -1159,11 +1159,12 @@
   <!-- ============================================================
        SCRIPTS
   ============================================================ -->
-  <script>
+ <script>
+  document.addEventListener("DOMContentLoaded", () => {
+
     // CONTADOR DE VISITANTES — realista
-    function randomViewers() {
-      const el = document.getElementById("viewers");
-      if (!el) return;
+    const el = document.getElementById("viewers");
+    if (el) {
       let current = 82;
       setInterval(() => {
         let variation = Math.floor(Math.random() * 5) - 2;
@@ -1173,21 +1174,33 @@
         el.innerText = current;
       }, 2500);
     }
-    randomViewers();
 
     // SCROLL REVEAL
-    const reveals = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('visible');
-          observer.unobserve(e.target);
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
         }
       });
     }, { threshold: 0.1 });
-    reveals.forEach(el => observer.observe(el));
 
-    // STICKY BAR — aparece após rolar 600px
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // SMOOTH SCROLL para links internos (#ancora)
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        const target = document.querySelector(targetId);
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+
+    // STICKY BAR — aparece após rolar 600px, some perto da oferta
     const stickyBar = document.getElementById('stickyBar');
     const ofertaSection = document.getElementById('oferta');
     window.addEventListener('scroll', () => {
@@ -1207,7 +1220,8 @@
         if (chevron) chevron.style.transform = d.open ? 'rotate(180deg)' : 'rotate(0deg)';
       });
     });
-  </script>
 
+  });
+</script>
 </body>
 </html>

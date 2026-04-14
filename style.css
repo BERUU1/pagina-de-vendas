@@ -33,7 +33,7 @@ html {
   font-size: 17px;
 }
 
-/* FUNDO PREMIUM — múltiplos gradientes radiais (ajuste 1) */
+/* FUNDO PREMIUM — múltiplos gradientes radiais */
 body {
   background:
     radial-gradient(circle at 20% 20%, rgba(245, 197, 24, 0.08), transparent 40%),
@@ -57,6 +57,25 @@ body::before {
   opacity: 0.6;
 }
 
+/* GRID ANIMADO — efeito tech premium */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  z-index: 0;
+  pointer-events: none;
+  animation: gridMove 20s linear infinite;
+}
+
+@keyframes gridMove {
+  0%   { transform: translate(0, 0); }
+  100% { transform: translate(-60px, -60px); }
+}
+
 section, footer, header, nav {
   position: relative;
   z-index: 1;
@@ -69,7 +88,6 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.1;
 }
 
-/* TÍTULOS COM MAIS IMPACTO (ajuste 6) */
 .heading-xl {
   font-size: clamp(2.8rem, 8vw, 5.5rem);
   line-height: 1.0;
@@ -100,8 +118,21 @@ h1, h2, h3, h4, h5, h6 {
   padding: 0 24px;
 }
 
+/* SEÇÃO COM BORDA DE LUZ SUPERIOR */
 .section {
   padding: 80px 0;
+  position: relative;
+}
+
+.section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 60%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(245, 197, 24, 0.4), transparent);
+  transform: translateX(-50%);
 }
 
 .divider {
@@ -109,7 +140,7 @@ h1, h2, h3, h4, h5, h6 {
   background: linear-gradient(90deg, transparent, rgba(245, 197, 24, 0.2), transparent);
 }
 
-/* ── AMBIENT GLOW — COM ANIMAÇÃO FLOAT (ajuste 2) ──────────── */
+/* ── AMBIENT GLOW — COM ANIMAÇÃO FLOAT ─────────────────────── */
 .ambient {
   position: fixed;
   width: 700px;
@@ -129,6 +160,46 @@ h1, h2, h3, h4, h5, h6 {
   50%        { transform: translateX(-50%) translateY(30px); }
 }
 
+/* ── PARTÍCULAS FLUTUANDO ───────────────────────────────────── */
+.particles {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.particles span {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: rgba(245, 197, 24, 0.4);
+  border-radius: 50%;
+  animation: floatParticles linear infinite;
+}
+
+@keyframes floatParticles {
+  from {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+  10% { opacity: 1; }
+  to  {
+    transform: translateY(-10vh);
+    opacity: 0;
+  }
+}
+
+/* ── CURSOR GLOW ────────────────────────────────────────────── */
+.cursor-glow {
+  position: fixed;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(245, 197, 24, 0.15), transparent 60%);
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+}
+
 /* ── BADGE ──────────────────────────────────────────────────── */
 .badge {
   display: inline-flex;
@@ -146,7 +217,7 @@ h1, h2, h3, h4, h5, h6 {
   padding: 6px 14px;
 }
 
-/* ── CARDS — GLASS PREMIUM (ajuste 5) ───────────────────────── */
+/* ── CARDS — GLASS PREMIUM ──────────────────────────────────── */
 .card {
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.12);
@@ -167,7 +238,6 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 0 0 50px var(--gold-glow);
 }
 
-/* Glass card (alias para compatibilidade) */
 .glass-card {
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.12);
@@ -185,7 +255,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* ── BOTÕES ─────────────────────────────────────────────────── */
 
-/* BOTÃO PRIMÁRIO — com efeito brilho + pseudo 3D (ajustes 3 e 4) */
+/* BOTÃO PRIMÁRIO — brilho + pseudo 3D + campo de atenção */
 .btn-primary {
   position: relative;
   overflow: hidden;
@@ -207,14 +277,26 @@ h1, h2, h3, h4, h5, h6 {
   width: 100%;
   text-align: center;
   border: none;
+  z-index: 2;
 }
 
-.btn-primary:hover {
-  transform: scale(1.05);
-  box-shadow: 0 15px 60px rgba(245, 197, 24, 0.6);
+/* Campo de atenção dourado em volta do botão */
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  border-radius: 16px;
+  background: radial-gradient(circle, rgba(245, 197, 24, 0.35), transparent 70%);
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s;
 }
 
-/* Efeito brilho deslizante ao hover (ajuste 3) */
+.btn-primary:hover::before {
+  opacity: 1;
+}
+
+/* Brilho deslizante ao hover */
 .btn-primary::after {
   content: '';
   position: absolute;
@@ -224,13 +306,19 @@ h1, h2, h3, h4, h5, h6 {
   height: 100%;
   background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.4), transparent);
   transition: 0.5s;
+  z-index: 1;
+}
+
+.btn-primary:hover {
+  transform: scale(1.05);
+  box-shadow: 0 15px 60px rgba(245, 197, 24, 0.6);
 }
 
 .btn-primary:hover::after {
   left: 100%;
 }
 
-/* Pseudo 3D ao clicar (ajuste 4) */
+/* Pseudo 3D ao clicar */
 .btn-primary:active {
   transform: scale(0.97);
   box-shadow: 0 5px 20px rgba(245, 197, 24, 0.4);
@@ -264,7 +352,37 @@ h1, h2, h3, h4, h5, h6 {
   color: #000;
 }
 
-/* ── ANIMAÇÕES ──────────────────────────────────────────────── */
+/* ── SETA ANIMADA (direciona olhar pro CTA) ─────────────────── */
+@keyframes arrowBounce {
+  0%,  100% { transform: translateY(0); }
+  50%        { transform: translateY(6px); }
+}
+
+.cta-arrow {
+  display: inline-block;
+  animation: arrowBounce 1s infinite;
+}
+
+/* ── CTA FINAL — EFEITO DE PRESSÃO ─────────────────────────── */
+.final-cta {
+  position: relative;
+}
+
+.final-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, rgba(245, 197, 24, 0.08), transparent 70%);
+  animation: pulseBg 3s infinite;
+  pointer-events: none;
+}
+
+@keyframes pulseBg {
+  0%,  100% { opacity: 0.3; }
+  50%        { opacity: 0.7; }
+}
+
+/* ── ANIMAÇÕES GERAIS ───────────────────────────────────────── */
 @keyframes btn-pulse {
   0%,  100% { box-shadow: 0 10px 30px rgba(245, 197, 24, 0.35); }
   50%        { box-shadow: 0 10px 60px rgba(245, 197, 24, 0.7); }
@@ -283,14 +401,13 @@ h1, h2, h3, h4, h5, h6 {
   will-change: opacity, transform;
 }
 
-/* Suporta tanto .visible (index.html) quanto .active (legado) */
 .reveal.visible,
 .reveal.active {
   opacity: 1;
   transform: none;
 }
 
-/* ── STICKY BAR — MAIS FORTE (ajuste 8) ─────────────────────── */
+/* ── STICKY BAR ─────────────────────────────────────────────── */
 .sticky-bar {
   position: fixed;
   bottom: 0;
@@ -329,7 +446,7 @@ h1, h2, h3, h4, h5, h6 {
   justify-content: center;
 }
 
-/* ── PREÇO — COM GLOW ANIMADO (ajuste 9) ────────────────────── */
+/* ── PREÇO — GLOW ANIMADO + TAG "HOJE" ──────────────────────── */
 .price-integer {
   font-family: 'Bebas Neue', sans-serif;
   font-size: clamp(5rem, 15vw, 8rem);
@@ -337,6 +454,22 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--gold-strong);
   letter-spacing: -0.02em;
   animation: glowPrice 2s infinite alternate;
+  position: relative;
+}
+
+.price-integer::after {
+  content: 'HOJE';
+  position: absolute;
+  top: -20px;
+  right: -40px;
+  font-size: 0.8rem;
+  color: #000;
+  background: var(--gold);
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-family: 'Barlow', sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.05em;
 }
 
 @keyframes glowPrice {
@@ -394,7 +527,7 @@ details[open] .chevron {
   padding: 0 24px;
 }
 
-/* ── PLAY BUTTON — PULSE ANIMADO (ajuste 10) ────────────────── */
+/* ── PLAY BUTTON — PULSE ANIMADO ────────────────────────────── */
 .play-btn {
   animation: pulsePlay 1.5s ease-in-out infinite;
 }
@@ -473,9 +606,15 @@ details[open] .chevron {
     font-size: 1.1rem;
     padding: 16px 24px;
   }
+
+  /* Remove cursor glow em touch — não faz sentido sem mouse */
+  .cursor-glow { display: none; }
 }
 
 @media (max-width: 480px) {
   .heading-xl { font-size: 2.4rem; }
   .heading-lg { font-size: 1.8rem; }
+
+  /* Tag HOJE some em telas muito pequenas para não sobrepor */
+  .price-integer::after { display: none; }
 }

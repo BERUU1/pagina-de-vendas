@@ -33,8 +33,13 @@ html {
   font-size: 17px;
 }
 
+/* FUNDO PREMIUM — múltiplos gradientes radiais (ajuste 1) */
 body {
-  background: radial-gradient(circle at top, rgba(245, 197, 24, 0.08), transparent 60%), #050505;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(245, 197, 24, 0.08), transparent 40%),
+    radial-gradient(circle at 80% 0%,  rgba(245, 197, 24, 0.06), transparent 40%),
+    radial-gradient(circle at 50% 100%, rgba(245, 197, 24, 0.05), transparent 50%),
+    #050505;
   color: var(--text);
   font-family: 'Barlow', sans-serif;
   line-height: 1.65;
@@ -64,10 +69,13 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.1;
 }
 
+/* TÍTULOS COM MAIS IMPACTO (ajuste 6) */
 .heading-xl {
   font-size: clamp(2.8rem, 8vw, 5.5rem);
   line-height: 1.0;
-  text-shadow: 0 0 40px rgba(245, 197, 24, 0.15);
+  text-shadow:
+    0 0 40px rgba(245, 197, 24, 0.25),
+    0 0 80px rgba(245, 197, 24, 0.1);
 }
 
 .heading-lg {
@@ -101,7 +109,7 @@ h1, h2, h3, h4, h5, h6 {
   background: linear-gradient(90deg, transparent, rgba(245, 197, 24, 0.2), transparent);
 }
 
-/* ── AMBIENT GLOW ───────────────────────────────────────────── */
+/* ── AMBIENT GLOW — COM ANIMAÇÃO FLOAT (ajuste 2) ──────────── */
 .ambient {
   position: fixed;
   width: 700px;
@@ -113,6 +121,12 @@ h1, h2, h3, h4, h5, h6 {
   transform: translateX(-50%);
   pointer-events: none;
   z-index: 0;
+  animation: float 8s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%,  100% { transform: translateX(-50%) translateY(0); }
+  50%        { transform: translateX(-50%) translateY(30px); }
 }
 
 /* ── BADGE ──────────────────────────────────────────────────── */
@@ -132,23 +146,20 @@ h1, h2, h3, h4, h5, h6 {
   padding: 6px 14px;
 }
 
-/* ── CARDS ──────────────────────────────────────────────────── */
+/* ── CARDS — GLASS PREMIUM (ajuste 5) ───────────────────────── */
 .card {
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.07),
-    rgba(255, 255, 255, 0.03)
-  );
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  border-radius: 16px;
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  transition: border-color 0.25s ease, transform 0.25s ease;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 18px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: all 0.25s ease;
 }
 
 .card:hover {
-  border-color: rgba(245, 197, 24, 0.35);
-  transform: translateY(-2px);
+  border-color: rgba(245, 197, 24, 0.4);
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
 }
 
 .card-gold {
@@ -158,25 +169,26 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Glass card (alias para compatibilidade) */
 .glass-card {
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.07),
-    rgba(255, 255, 255, 0.03)
-  );
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  border-radius: 16px;
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  transition: border-color 0.25s ease, transform 0.25s ease;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 18px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: all 0.25s ease;
 }
 
 .glass-card:hover {
   border-color: rgba(245, 197, 24, 0.3);
-  transform: translateY(-3px);
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
 }
 
 /* ── BOTÕES ─────────────────────────────────────────────────── */
+
+/* BOTÃO PRIMÁRIO — com efeito brilho + pseudo 3D (ajustes 3 e 4) */
 .btn-primary {
+  position: relative;
+  overflow: hidden;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -200,6 +212,28 @@ h1, h2, h3, h4, h5, h6 {
 .btn-primary:hover {
   transform: scale(1.05);
   box-shadow: 0 15px 60px rgba(245, 197, 24, 0.6);
+}
+
+/* Efeito brilho deslizante ao hover (ajuste 3) */
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transition: 0.5s;
+}
+
+.btn-primary:hover::after {
+  left: 100%;
+}
+
+/* Pseudo 3D ao clicar (ajuste 4) */
+.btn-primary:active {
+  transform: scale(0.97);
+  box-shadow: 0 5px 20px rgba(245, 197, 24, 0.4);
 }
 
 .btn-primary.pulse {
@@ -232,8 +266,8 @@ h1, h2, h3, h4, h5, h6 {
 
 /* ── ANIMAÇÕES ──────────────────────────────────────────────── */
 @keyframes btn-pulse {
-  0%, 100% { box-shadow: 0 10px 30px rgba(245, 197, 24, 0.35); }
-  50%       { box-shadow: 0 10px 60px rgba(245, 197, 24, 0.7); }
+  0%,  100% { box-shadow: 0 10px 30px rgba(245, 197, 24, 0.35); }
+  50%        { box-shadow: 0 10px 60px rgba(245, 197, 24, 0.7); }
 }
 
 @keyframes marquee {
@@ -249,13 +283,14 @@ h1, h2, h3, h4, h5, h6 {
   will-change: opacity, transform;
 }
 
+/* Suporta tanto .visible (index.html) quanto .active (legado) */
 .reveal.visible,
 .reveal.active {
   opacity: 1;
   transform: none;
 }
 
-/* ── STICKY BAR ─────────────────────────────────────────────── */
+/* ── STICKY BAR — MAIS FORTE (ajuste 8) ─────────────────────── */
 .sticky-bar {
   position: fixed;
   bottom: 0;
@@ -269,6 +304,9 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
   justify-content: center;
   gap: 16px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 -5px 30px rgba(0, 0, 0, 0.6);
 }
 
 .sticky-bar.show {
@@ -291,14 +329,19 @@ h1, h2, h3, h4, h5, h6 {
   justify-content: center;
 }
 
-/* ── PREÇO ──────────────────────────────────────────────────── */
+/* ── PREÇO — COM GLOW ANIMADO (ajuste 9) ────────────────────── */
 .price-integer {
   font-family: 'Bebas Neue', sans-serif;
   font-size: clamp(5rem, 15vw, 8rem);
   line-height: 1;
   color: var(--gold-strong);
   letter-spacing: -0.02em;
-  text-shadow: 0 0 30px rgba(245, 197, 24, 0.3);
+  animation: glowPrice 2s infinite alternate;
+}
+
+@keyframes glowPrice {
+  from { text-shadow: 0 0 20px rgba(245, 197, 24, 0.2); }
+  to   { text-shadow: 0 0 40px rgba(245, 197, 24, 0.6); }
 }
 
 /* ── ESTRELAS ───────────────────────────────────────────────── */
@@ -351,6 +394,16 @@ details[open] .chevron {
   padding: 0 24px;
 }
 
+/* ── PLAY BUTTON — PULSE ANIMADO (ajuste 10) ────────────────── */
+.play-btn {
+  animation: pulsePlay 1.5s ease-in-out infinite;
+}
+
+@keyframes pulsePlay {
+  0%,  100% { transform: translate(-50%, -50%) scale(1); }
+  50%        { transform: translate(-50%, -50%) scale(1.1); }
+}
+
 /* ── IMAGENS ────────────────────────────────────────────────── */
 .img-rounded {
   width: 100%;
@@ -361,24 +414,12 @@ details[open] .chevron {
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-/* ── UTILITÁRIOS ────────────────────────────────────────────── */
-.mx-auto   { margin-inline: auto; }
-.text-center { text-align: center; }
-.text-left   { text-align: left; }
-
-.mt-2 { margin-top: 0.5rem; }
-.mt-3 { margin-top: 1rem; }
-.mt-4 { margin-top: 1.5rem; }
-.mt-5 { margin-top: 2.5rem; }
-.mb-4 { margin-bottom: 1.5rem; }
-
-/* ── IMAGENS — CLASSES UTILITÁRIAS ─────────────────────────── */
 .img-main {
   max-width: 420px;
   width: 100%;
   margin: 0 auto;
   border-radius: 14px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
 }
 
 .img-medium {
@@ -404,6 +445,17 @@ details[open] .chevron {
 
 .img-soft    { opacity: 0.92; }
 .img-spacing { margin-top: 20px; margin-bottom: 20px; }
+
+/* ── UTILITÁRIOS ────────────────────────────────────────────── */
+.mx-auto     { margin-inline: auto; }
+.text-center { text-align: center; }
+.text-left   { text-align: left; }
+
+.mt-2 { margin-top: 0.5rem; }
+.mt-3 { margin-top: 1rem; }
+.mt-4 { margin-top: 1.5rem; }
+.mt-5 { margin-top: 2.5rem; }
+.mb-4 { margin-bottom: 1.5rem; }
 
 /* ── RESPONSIVO ─────────────────────────────────────────────── */
 @media (max-width: 768px) {

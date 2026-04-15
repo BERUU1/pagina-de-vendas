@@ -4,9 +4,7 @@
 
 document.addEventListener("DOMContentLoaded", () => {
 
-  // ── SCROLL REVEAL ──────────────────────────────────────────
-  // Usa .visible (padrão do CSS). transitionDelay aleatório
-  // deixa os elementos entrarem de forma orgânica, não robótica.
+  // ── SCROLL REVEAL — delay orgânico ────────────────────────
   const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -19,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-  // ── SMOOTH SCROLL para links internos (#ancora) ────────────
+  // ── SMOOTH SCROLL ─────────────────────────────────────────
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
       const targetId = this.getAttribute('href');
@@ -43,7 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (current < 68) current = 68;
       if (current > 97) current = 97;
       viewersEl.innerText = current;
-    }, 4000); // intervalo maior = mais humano
+    }, 4000);
   }
 
   // ── STICKY BAR ────────────────────────────────────────────
@@ -54,41 +52,54 @@ document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener('scroll', () => {
       const scrolled = window.scrollY > 600;
       const pastOffer = ofertaSection && window.scrollY > ofertaSection.offsetTop - 100;
-      if (scrolled && !pastOffer) {
-        stickyBar.classList.add('show');
-      } else {
-        stickyBar.classList.remove('show');
-      }
-    });
+      stickyBar.classList.toggle('show', scrolled && !pastOffer);
+    }, { passive: true });
   }
 
   // ── FAQ CHEVRON ────────────────────────────────────────────
   document.querySelectorAll('details').forEach(d => {
     d.addEventListener('toggle', () => {
       const chevron = d.querySelector('.chevron');
-      if (chevron) {
-        chevron.style.transform = d.open ? 'rotate(180deg)' : 'rotate(0deg)';
-      }
+      if (chevron) chevron.style.transform = d.open ? 'rotate(180deg)' : 'rotate(0deg)';
     });
   });
 
-  // ── FEEDBACK IMEDIATO NO BOTÃO (reduz ansiedade pós-clique) ─
-  // Só aplica nos botões que levam pra fora (href externo),
-  // para não interferir com links internos (#ancora).
+  // ── FEEDBACK NO BOTÃO (só externos) ───────────────────────
   document.querySelectorAll('.btn-primary').forEach(btn => {
     const href = btn.getAttribute('href') || '';
-    const isExternal = href.startsWith('http');
-    if (!isExternal) return;
+    if (!href.startsWith('http')) return;
 
     btn.addEventListener('click', () => {
       const original = btn.innerText;
       btn.innerText = '⏳ CARREGANDO...';
-      // Restaura após 3s caso o usuário volte ou a aba não abra
       setTimeout(() => { btn.innerText = original; }, 3000);
     });
   });
 
-  // ── CURSOR GLOW (apenas desktop com mouse) ─────────────────
+  // ── LUZ NO CARD SEGUINDO O MOUSE ──────────────────────────
+  // Atualiza as variáveis CSS --x e --y relativas ao card
+  document.querySelectorAll('.card').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const rect = card.getBoundingClientRect();
+      card.style.setProperty('--x', (e.clientX - rect.left) + 'px');
+      card.style.setProperty('--y', (e.clientY - rect.top)  + 'px');
+    });
+  });
+
+  // ── PARALLAX LEVE NAS IMAGENS ──────────────────────────────
+  // Cria sensação de profundidade sem pesar a página
+  const parallaxEls = document.querySelectorAll('.img-main, .img-medium');
+
+  if (parallaxEls.length > 0) {
+    window.addEventListener('scroll', () => {
+      const scroll = window.scrollY;
+      parallaxEls.forEach(el => {
+        el.style.transform = `translateY(${scroll * 0.05}px)`;
+      });
+    }, { passive: true });
+  }
+
+  // ── CURSOR GLOW (apenas desktop/mouse) ────────────────────
   const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
 
   if (!isTouchDevice) {
@@ -99,7 +110,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.addEventListener('mousemove', (e) => {
       glow.style.left = e.clientX + 'px';
       glow.style.top  = e.clientY + 'px';
-    });
+    }, { passive: true });
   }
 
 });

@@ -4,10 +4,25 @@
 
 document.addEventListener("DOMContentLoaded", () => {
 
-  // ── SCROLL REVEAL — delay via data-delay (ajuste 5) ───────
-  // Cada elemento pode ter data-delay="0.1" no HTML para
-  // controlar a ordem de entrada de forma cinematográfica.
-  // Sem data-delay → entra imediatamente.
+  // ── PARTÍCULAS DINÂMICAS ───────────────────────────────────
+  // Cria automaticamente 40 pontinhos dourados subindo.
+  // Em mobile reduz para 20 para não pesar.
+  const particlesContainer = document.getElementById('particles');
+
+  if (particlesContainer) {
+    const isMobile = window.innerWidth < 768;
+    const MAX_PARTICLES = isMobile ? 20 : 40;
+
+    for (let i = 0; i < MAX_PARTICLES; i++) {
+      const span = document.createElement('span');
+      span.style.left            = Math.random() * 100 + 'vw';
+      span.style.animationDuration = (Math.random() * 10 + 10) + 's';
+      span.style.animationDelay   = (Math.random() * 10) + 's';
+      particlesContainer.appendChild(span);
+    }
+  }
+
+  // ── SCROLL REVEAL — delay via data-delay ──────────────────
   const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -34,7 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // ── CONTADOR DE VISITANTES — orgânico ─────────────────────
+  // ── CONTADOR DE VISITANTES ─────────────────────────────────
   const viewersEl = document.getElementById("viewers");
   if (viewersEl) {
     let current = Math.floor(Math.random() * (95 - 70) + 70);
@@ -77,12 +92,12 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // ── BOTÃO MAGNÉTICO (ajuste 4) ────────────────────────────
-  // O botão acompanha levemente o mouse, criando atração.
-  // Só em desktop (pointer: fine).
+  // ── EFEITOS APENAS DESKTOP ─────────────────────────────────
   const isMouseDevice = window.matchMedia('(pointer: fine)').matches;
 
   if (isMouseDevice) {
+
+    // Botão magnético
     document.querySelectorAll('.btn-primary').forEach(btn => {
       btn.addEventListener('mousemove', e => {
         const rect = btn.getBoundingClientRect();
@@ -90,15 +105,10 @@ document.addEventListener("DOMContentLoaded", () => {
         const y = e.clientY - rect.top  - rect.height / 2;
         btn.style.transform = `translate(${x * 0.15}px, ${y * 0.2}px) scale(1.05)`;
       });
-
-      btn.addEventListener('mouseleave', () => {
-        btn.style.transform = '';
-      });
+      btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
     });
-  }
 
-  // ── LUZ NO CARD SEGUINDO O MOUSE ──────────────────────────
-  if (isMouseDevice) {
+    // Luz no card seguindo o mouse
     document.querySelectorAll('.card').forEach(card => {
       card.addEventListener('mousemove', e => {
         const rect = card.getBoundingClientRect();
@@ -106,11 +116,19 @@ document.addEventListener("DOMContentLoaded", () => {
         card.style.setProperty('--y', (e.clientY - rect.top)  + 'px');
       });
     });
+
+    // Cursor glow
+    const glow = document.createElement('div');
+    glow.classList.add('cursor-glow');
+    document.body.appendChild(glow);
+    document.addEventListener('mousemove', (e) => {
+      glow.style.left = e.clientX + 'px';
+      glow.style.top  = e.clientY + 'px';
+    }, { passive: true });
   }
 
   // ── PARALLAX NAS IMAGENS ───────────────────────────────────
   const parallaxEls = document.querySelectorAll('.img-main, .img-medium');
-
   if (parallaxEls.length > 0) {
     window.addEventListener('scroll', () => {
       const scroll = window.scrollY;
@@ -120,11 +138,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }, { passive: true });
   }
 
-  // ── EFEITO FOCO NAS SEÇÕES (ajuste 7) ─────────────────────
-  // A seção ativa fica em destaque; as demais ficam levemente
-  // apagadas e reduzidas. Desativado em mobile via CSS.
+  // ── EFEITO FOCO NAS SEÇÕES ─────────────────────────────────
   const sections = document.querySelectorAll('.section');
-
   if (sections.length > 0) {
     const onScroll = () => {
       const current = window.scrollY;
@@ -134,21 +149,8 @@ document.addEventListener("DOMContentLoaded", () => {
         sec.classList.toggle('inactive', !(current >= top && current <= bottom));
       });
     };
-
     window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll(); // roda uma vez no load para não começar tudo inativo
-  }
-
-  // ── CURSOR GLOW (apenas desktop com mouse) ─────────────────
-  if (isMouseDevice) {
-    const glow = document.createElement('div');
-    glow.classList.add('cursor-glow');
-    document.body.appendChild(glow);
-
-    document.addEventListener('mousemove', (e) => {
-      glow.style.left = e.clientX + 'px';
-      glow.style.top  = e.clientY + 'px';
-    }, { passive: true });
+    onScroll();
   }
 
 });

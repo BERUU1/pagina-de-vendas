@@ -30,7 +30,6 @@ html {
   font-size: 17px;
 }
 
-/* FUNDO PREMIUM — múltiplos gradientes + respiração (ajuste 1) */
 body {
   background:
     radial-gradient(circle at 20% 20%, rgba(245, 197, 24, 0.08), transparent 40%),
@@ -61,7 +60,7 @@ body::before {
   opacity: 0.6;
 }
 
-/* Grid animado + glow pulsante (ajuste 6) */
+/* Grid animado + glow pulsante */
 body::after {
   content: '';
   position: fixed;
@@ -88,6 +87,59 @@ body::after {
 section, footer, header, nav {
   position: relative;
   z-index: 1;
+}
+
+/* ── PARTÍCULAS DOURADAS ────────────────────────────────────── */
+.particles {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.particles span {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: rgba(245, 197, 24, 0.6);
+  border-radius: 50%;
+  animation: particleFloat linear infinite;
+  opacity: 0;
+}
+
+@keyframes particleFloat {
+  0%   { transform: translateY(100vh) scale(0.5); opacity: 0; }
+  10%  { opacity: 1; }
+  50%  { opacity: 0.8; }
+  100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+}
+
+/* ── LINHAS DIAGONAIS EM MOVIMENTO ──────────────────────────── */
+.lines-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.15;
+}
+
+.lines-bg::before {
+  content: '';
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background: repeating-linear-gradient(
+    135deg,
+    transparent 0px,
+    transparent 80px,
+    rgba(245, 197, 24, 0.08) 82px
+  );
+  animation: moveLines 30s linear infinite;
+}
+
+@keyframes moveLines {
+  from { transform: translate(0, 0); }
+  to   { transform: translate(-200px, -200px); }
 }
 
 /* ── AURORA ─────────────────────────────────────────────────── */
@@ -117,7 +169,7 @@ section, footer, header, nav {
   100% { transform: translate(100px, -80px); }
 }
 
-/* ── LIGHT SWEEP — linha de luz passando (ajuste 2) ─────────── */
+/* ── LIGHT SWEEP ────────────────────────────────────────────── */
 .light-sweep {
   position: fixed;
   inset: 0;
@@ -162,29 +214,6 @@ section, footer, header, nav {
   50%        { transform: translateX(-50%) translateY(30px); }
 }
 
-/* ── PARTÍCULAS ─────────────────────────────────────────────── */
-.particles {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.particles span {
-  position: absolute;
-  width: 2px;
-  height: 2px;
-  background: rgba(245, 197, 24, 0.4);
-  border-radius: 50%;
-  animation: floatParticles linear infinite;
-}
-
-@keyframes floatParticles {
-  from { transform: translateY(100vh); opacity: 0; }
-  10%  { opacity: 1; }
-  to   { transform: translateY(-10vh); opacity: 0; }
-}
-
 /* ── CURSOR GLOW ────────────────────────────────────────────── */
 .cursor-glow {
   position: fixed;
@@ -221,7 +250,7 @@ h1, h2, h3, h4, h5, h6 {
 .text-soft        { color: var(--text-soft); }
 .text-muted       { color: var(--text-muted); }
 
-/* ── TEXT REVEAL — com scale (ajuste 3) ─────────────────────── */
+/* ── TEXT REVEAL ────────────────────────────────────────────── */
 .text-reveal {
   opacity: 0;
   transform: translateY(30px) scale(0.98);
@@ -239,7 +268,6 @@ h1, h2, h3, h4, h5, h6 {
   padding: 0 24px;
 }
 
-/* SEÇÕES — efeito foco (ajuste 7) */
 .section {
   padding: 80px 0;
   position: relative;
@@ -257,7 +285,6 @@ h1, h2, h3, h4, h5, h6 {
   transform: translateX(-50%);
 }
 
-/* Seções fora do foco ficam levemente apagadas */
 .section.inactive {
   opacity: 0.5;
   transform: scale(0.98);
@@ -285,7 +312,7 @@ h1, h2, h3, h4, h5, h6 {
   padding: 6px 14px;
 }
 
-/* ── CARDS — GLASS + LUZ SEGUINDO O MOUSE ───────────────────── */
+/* ── CARDS ──────────────────────────────────────────────────── */
 .card {
   position: relative;
   overflow: hidden;
@@ -345,7 +372,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ── BOTÕES ─────────────────────────────────────────────────── */
-
 .btn-primary {
   position: relative;
   overflow: hidden;
@@ -370,7 +396,6 @@ h1, h2, h3, h4, h5, h6 {
   z-index: 2;
 }
 
-/* Energia contínua passando pelo botão */
 .btn-primary::before {
   content: '';
   position: absolute;
@@ -387,7 +412,6 @@ h1, h2, h3, h4, h5, h6 {
   100% { transform: translateX(100%); opacity: 0; }
 }
 
-/* Brilho extra no hover */
 .btn-primary::after {
   content: '';
   position: absolute;
@@ -400,18 +424,9 @@ h1, h2, h3, h4, h5, h6 {
   z-index: 1;
 }
 
-.btn-primary:hover {
-  box-shadow: 0 15px 60px rgba(245, 197, 24, 0.6);
-}
-
+.btn-primary:hover { box-shadow: 0 15px 60px rgba(245, 197, 24, 0.6); }
 .btn-primary:hover::after { left: 100%; }
-
-/* Pseudo 3D ao clicar */
-.btn-primary:active {
-  transform: scale(0.97) !important;
-  box-shadow: 0 5px 20px rgba(245, 197, 24, 0.4);
-}
-
+.btn-primary:active { transform: scale(0.97) !important; box-shadow: 0 5px 20px rgba(245, 197, 24, 0.4); }
 .btn-primary.pulse { animation: btn-pulse 2.2s infinite; }
 
 .btn-outline {
@@ -440,12 +455,10 @@ h1, h2, h3, h4, h5, h6 {
   0%,  100% { transform: translateY(0); }
   50%        { transform: translateY(6px); }
 }
-
 .cta-arrow { display: inline-block; animation: arrowBounce 1s infinite; }
 
-/* ── CTA FINAL — PRESSÃO ────────────────────────────────────── */
+/* ── CTA FINAL ──────────────────────────────────────────────── */
 .final-cta { position: relative; }
-
 .final-cta::before {
   content: '';
   position: absolute;
@@ -480,17 +493,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .reveal.visible,
-.reveal.active {
-  opacity: 1;
-  transform: none;
-}
+.reveal.active { opacity: 1; transform: none; }
 
 /* ── STICKY BAR ─────────────────────────────────────────────── */
 .sticky-bar {
   position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  bottom: 0; left: 0; right: 0;
   background: rgba(5, 5, 5, 0.97);
   border-top: 1px solid rgba(245, 197, 24, 0.25);
   padding: 12px 20px;
@@ -503,23 +511,18 @@ h1, h2, h3, h4, h5, h6 {
   -webkit-backdrop-filter: blur(10px);
   box-shadow: 0 -5px 30px rgba(0, 0, 0, 0.6);
 }
-
 .sticky-bar.show { display: flex; }
 
 /* ── STEP NUMBER ────────────────────────────────────────────── */
 .step-num {
-  width: 44px;
-  height: 44px;
-  min-width: 44px;
+  width: 44px; height: 44px; min-width: 44px;
   border-radius: 50%;
   background: var(--gold-dim);
   border: 2px solid rgba(245, 197, 24, 0.4);
   color: var(--gold);
   font-family: 'Bebas Neue', sans-serif;
   font-size: 1.3rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: flex; align-items: center; justify-content: center;
 }
 
 /* ── PREÇO ──────────────────────────────────────────────────── */
@@ -536,8 +539,7 @@ h1, h2, h3, h4, h5, h6 {
 .price-integer::after {
   content: 'HOJE';
   position: absolute;
-  top: -20px;
-  right: -40px;
+  top: -20px; right: -40px;
   font-size: 0.8rem;
   color: #000;
   background: var(--gold);
@@ -564,36 +566,25 @@ details[open] .chevron { transform: rotate(180deg); }
 
 /* ── MARQUEE ────────────────────────────────────────────────── */
 .marquee-wrapper {
-  overflow: hidden;
-  display: flex;
-  background: var(--gold);
-  color: #000;
+  overflow: hidden; display: flex;
+  background: var(--gold); color: #000;
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 1rem;
-  letter-spacing: 0.1em;
+  font-size: 1rem; letter-spacing: 0.1em;
   padding: 14px 0;
   box-shadow: 0 0 30px var(--gold-glow);
 }
-
 .marquee { display: flex; white-space: nowrap; animation: marquee 20s linear infinite; }
 .marquee span { padding: 0 24px; }
 
 /* ── PLAY BUTTON ────────────────────────────────────────────── */
 .play-btn { animation: pulsePlay 1.5s ease-in-out infinite; }
-
 @keyframes pulsePlay {
   0%,  100% { transform: translate(-50%, -50%) scale(1); }
   50%        { transform: translate(-50%, -50%) scale(1.1); }
 }
 
 /* ── IMAGENS ────────────────────────────────────────────────── */
-.img-rounded {
-  width: 100%; height: 100%; object-fit: cover;
-  border-radius: 15px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
+.img-rounded { width: 100%; height: 100%; object-fit: cover; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.08); }
 .img-main    { max-width: 420px; width: 100%; margin: 0 auto; border-radius: 14px; box-shadow: 0 10px 30px rgba(0,0,0,0.4); }
 .img-medium  { max-width: 340px; width: 100%; margin: 0 auto; border-radius: 12px; }
 .img-small   { max-width: 260px; width: 100%; margin: 0 auto; border-radius: 10px; }
@@ -602,9 +593,9 @@ details[open] .chevron { transform: rotate(180deg); }
 .img-spacing { margin-top: 20px; margin-bottom: 20px; }
 
 /* ── UTILITÁRIOS ────────────────────────────────────────────── */
-.mx-auto     { margin-inline: auto; }
+.mx-auto { margin-inline: auto; }
 .text-center { text-align: center; }
-.text-left   { text-align: left; }
+.text-left { text-align: left; }
 .mt-2 { margin-top: 0.5rem; }
 .mt-3 { margin-top: 1rem; }
 .mt-4 { margin-top: 1.5rem; }
@@ -615,12 +606,12 @@ details[open] .chevron { transform: rotate(180deg); }
 @media (max-width: 768px) {
   html { font-size: 15px; }
   .section { padding: 60px 0; }
-  /* Desativa efeito foco em mobile — muito agressivo em tela pequena */
   .section.inactive { opacity: 1; transform: none; }
   .sticky-bar.show { flex-direction: column; gap: 8px; }
   .btn-primary, .btn-outline { font-size: 1.1rem; padding: 16px 24px; }
   .cursor-glow { display: none; }
   .aurora span { width: 300px; height: 300px; }
+  /* Menos partículas via JS — controlado por MAX_PARTICLES */
 }
 
 @media (max-width: 480px) {

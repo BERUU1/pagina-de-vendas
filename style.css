@@ -30,16 +30,24 @@ html {
   font-size: 17px;
 }
 
+/* FUNDO PREMIUM — múltiplos gradientes + respiração (ajuste 1) */
 body {
   background:
     radial-gradient(circle at 20% 20%, rgba(245, 197, 24, 0.08), transparent 40%),
     radial-gradient(circle at 80% 0%,  rgba(245, 197, 24, 0.06), transparent 40%),
     radial-gradient(circle at 50% 100%, rgba(245, 197, 24, 0.05), transparent 50%),
     #050505;
+  background-size: 200% 200%, 200% 200%, 200% 200%, auto;
+  animation: breathingBg 12s ease-in-out infinite;
   color: var(--text);
   font-family: 'Barlow', sans-serif;
   line-height: 1.65;
   overflow-x: hidden;
+}
+
+@keyframes breathingBg {
+  0%,  100% { background-position: 0% 0%, 100% 0%, 50% 100%, 0 0; }
+  50%        { background-position: 10% 5%, 90% 5%, 50% 90%, 0 0; }
 }
 
 /* Noise texture */
@@ -53,7 +61,7 @@ body::before {
   opacity: 0.6;
 }
 
-/* Grid animado tech premium */
+/* Grid animado + glow pulsante (ajuste 6) */
 body::after {
   content: '';
   position: fixed;
@@ -64,7 +72,7 @@ body::after {
   background-size: 60px 60px;
   z-index: 0;
   pointer-events: none;
-  animation: gridMove 20s linear infinite;
+  animation: gridMove 20s linear infinite, glowShift 10s ease-in-out infinite;
 }
 
 @keyframes gridMove {
@@ -72,12 +80,17 @@ body::after {
   100% { transform: translate(-60px, -60px); }
 }
 
+@keyframes glowShift {
+  0%,  100% { opacity: 0.3; }
+  50%        { opacity: 0.6; }
+}
+
 section, footer, header, nav {
   position: relative;
   z-index: 1;
 }
 
-/* ── AURORA (fundo respirando) ──────────────────────────────── */
+/* ── AURORA ─────────────────────────────────────────────────── */
 .aurora {
   position: fixed;
   inset: 0;
@@ -104,7 +117,32 @@ section, footer, header, nav {
   100% { transform: translate(100px, -80px); }
 }
 
-/* ── AMBIENT GLOW — FLOAT ───────────────────────────────────── */
+/* ── LIGHT SWEEP — linha de luz passando (ajuste 2) ─────────── */
+.light-sweep {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.light-sweep::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -50%;
+  width: 200%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(245, 197, 24, 0.5), transparent);
+  animation: sweep 6s linear infinite;
+}
+
+@keyframes sweep {
+  from { transform: translateX(0); }
+  to   { transform: translateX(50%); }
+}
+
+/* ── AMBIENT GLOW FLOAT ─────────────────────────────────────── */
 .ambient {
   position: fixed;
   width: 700px;
@@ -183,15 +221,15 @@ h1, h2, h3, h4, h5, h6 {
 .text-soft        { color: var(--text-soft); }
 .text-muted       { color: var(--text-muted); }
 
-/* ── TEXT REVEAL (títulos com animação de entrada) ──────────── */
+/* ── TEXT REVEAL — com scale (ajuste 3) ─────────────────────── */
 .text-reveal {
   opacity: 0;
-  transform: translateY(20px);
+  transform: translateY(30px) scale(0.98);
   animation: revealText 0.8s ease forwards;
 }
 
 @keyframes revealText {
-  to { opacity: 1; transform: translateY(0); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 /* ── LAYOUT ─────────────────────────────────────────────────── */
@@ -201,12 +239,13 @@ h1, h2, h3, h4, h5, h6 {
   padding: 0 24px;
 }
 
+/* SEÇÕES — efeito foco (ajuste 7) */
 .section {
   padding: 80px 0;
   position: relative;
+  transition: transform 0.4s ease, opacity 0.4s ease;
 }
 
-/* Borda de luz superior em cada seção */
 .section::before {
   content: '';
   position: absolute;
@@ -216,6 +255,12 @@ h1, h2, h3, h4, h5, h6 {
   height: 1px;
   background: linear-gradient(90deg, transparent, rgba(245, 197, 24, 0.4), transparent);
   transform: translateX(-50%);
+}
+
+/* Seções fora do foco ficam levemente apagadas */
+.section.inactive {
+  opacity: 0.5;
+  transform: scale(0.98);
 }
 
 .divider {
@@ -252,7 +297,6 @@ h1, h2, h3, h4, h5, h6 {
   transition: all 0.25s ease;
 }
 
-/* Luz interna seguindo o mouse (posição via JS com --x --y) */
 .card::before {
   content: '';
   position: absolute;
@@ -281,7 +325,6 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 0 0 50px var(--gold-glow);
 }
 
-/* Garante que conteúdo interno fica acima do ::before */
 .card > * { position: relative; z-index: 1; }
 
 .glass-card {
@@ -318,7 +361,7 @@ h1, h2, h3, h4, h5, h6 {
   padding: 20px 38px;
   font-weight: bold;
   box-shadow: 0 10px 40px rgba(245, 197, 24, 0.35);
-  transition: all 0.2s ease;
+  transition: box-shadow 0.2s ease, transform 0.1s ease;
   cursor: pointer;
   text-decoration: none;
   width: 100%;
@@ -327,7 +370,7 @@ h1, h2, h3, h4, h5, h6 {
   z-index: 2;
 }
 
-/* Campo de atenção dourado (hover) */
+/* Energia contínua passando pelo botão */
 .btn-primary::before {
   content: '';
   position: absolute;
@@ -338,14 +381,13 @@ h1, h2, h3, h4, h5, h6 {
   z-index: -1;
 }
 
-/* Energia contínua passando pelo botão */
 @keyframes energy {
   0%   { transform: translateX(-100%); opacity: 0; }
   30%  { opacity: 1; }
   100% { transform: translateX(100%); opacity: 0; }
 }
 
-/* Brilho deslizante extra no hover */
+/* Brilho extra no hover */
 .btn-primary::after {
   content: '';
   position: absolute;
@@ -359,7 +401,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn-primary:hover {
-  transform: scale(1.05);
   box-shadow: 0 15px 60px rgba(245, 197, 24, 0.6);
 }
 
@@ -367,7 +408,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Pseudo 3D ao clicar */
 .btn-primary:active {
-  transform: scale(0.97);
+  transform: scale(0.97) !important;
   box-shadow: 0 5px 20px rgba(245, 197, 24, 0.4);
 }
 
@@ -400,12 +441,9 @@ h1, h2, h3, h4, h5, h6 {
   50%        { transform: translateY(6px); }
 }
 
-.cta-arrow {
-  display: inline-block;
-  animation: arrowBounce 1s infinite;
-}
+.cta-arrow { display: inline-block; animation: arrowBounce 1s infinite; }
 
-/* ── CTA FINAL — EFEITO PRESSÃO ─────────────────────────────── */
+/* ── CTA FINAL — PRESSÃO ────────────────────────────────────── */
 .final-cta { position: relative; }
 
 .final-cta::before {
@@ -484,7 +522,7 @@ h1, h2, h3, h4, h5, h6 {
   justify-content: center;
 }
 
-/* ── PREÇO — GLOW + TAG "HOJE" ──────────────────────────────── */
+/* ── PREÇO ──────────────────────────────────────────────────── */
 .price-integer {
   font-family: 'Bebas Neue', sans-serif;
   font-size: clamp(5rem, 15vw, 8rem);
@@ -537,15 +575,10 @@ details[open] .chevron { transform: rotate(180deg); }
   box-shadow: 0 0 30px var(--gold-glow);
 }
 
-.marquee {
-  display: flex;
-  white-space: nowrap;
-  animation: marquee 20s linear infinite;
-}
-
+.marquee { display: flex; white-space: nowrap; animation: marquee 20s linear infinite; }
 .marquee span { padding: 0 24px; }
 
-/* ── PLAY BUTTON PULSE ──────────────────────────────────────── */
+/* ── PLAY BUTTON ────────────────────────────────────────────── */
 .play-btn { animation: pulsePlay 1.5s ease-in-out infinite; }
 
 @keyframes pulsePlay {
@@ -555,9 +588,7 @@ details[open] .chevron { transform: rotate(180deg); }
 
 /* ── IMAGENS ────────────────────────────────────────────────── */
 .img-rounded {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  width: 100%; height: 100%; object-fit: cover;
   border-radius: 15px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -584,10 +615,11 @@ details[open] .chevron { transform: rotate(180deg); }
 @media (max-width: 768px) {
   html { font-size: 15px; }
   .section { padding: 60px 0; }
+  /* Desativa efeito foco em mobile — muito agressivo em tela pequena */
+  .section.inactive { opacity: 1; transform: none; }
   .sticky-bar.show { flex-direction: column; gap: 8px; }
   .btn-primary, .btn-outline { font-size: 1.1rem; padding: 16px 24px; }
   .cursor-glow { display: none; }
-  /* Aurora mais suave em mobile */
   .aurora span { width: 300px; height: 300px; }
 }
 

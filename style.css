@@ -421,9 +421,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ── CARDS ──────────────────────────────────────────────────── */
-.card {
-  position: relative;
 .badge {
+  display: inline-flex;
    
   display: inline-flex;
   align-items: center;
@@ -788,9 +787,33 @@ details[open] .chevron { transform: rotate(180deg); }
 .aurora-bg::after {
   opacity: 0.6; /* antes era tipo 0.15–0.35 */
 }
-   .aurora-bg {
+ .aurora-bg {
   position: fixed;
   inset: 0;
-  z-index: -1; /* MUITO IMPORTANTE */
+  z-index: -1; /* ESSENCIAL */
+  overflow: hidden;
 }
+
+.aurora-bg::before,
+.aurora-bg::after {
+  content: '';
+  position: absolute;
+  width: 800px;
+  height: 800px;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.35;
+  animation: auroraMove 18s infinite alternate ease-in-out;
+}
+
+.aurora-bg::before {
+  background: rgba(245,197,24,0.25);
+  top: -200px;
+  left: -200px;
+}
+
+.aurora-bg::after {
+  background: rgba(255,215,0,0.15);
+  bottom: -200px;
+  right: -200px;
 }

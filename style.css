@@ -388,7 +388,43 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ── BADGE ──────────────────────────────────────────────────── */
+
+
+.section.inactive {
+  opacity: 0.5;
+  transform: scale(0.98);
+}
+
+.divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(245, 197, 24, 0.2), transparent);
+}
+
+.play-btn {
+  display: none !important;
+}
+
 .badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(245, 197, 24, 0.1);
+  border: 1px solid rgba(245, 197, 24, 0.3);
+  color: var(--gold);
+  font-family: 'Barlow', sans-serif;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-radius: 100px;
+  padding: 6px 14px;
+}
+
+/* ── CARDS ──────────────────────────────────────────────────── */
+.card {
+  position: relative;
+.badge {
+   
   display: inline-flex;
   align-items: center;
   gap: 6px;

@@ -563,6 +563,40 @@ details summary { list-style: none; cursor: pointer; user-select: none; }
 details summary::-webkit-details-marker { display: none; }
 .chevron { transition: transform 0.3s ease; display: inline-block; }
 details[open] .chevron { transform: rotate(180deg); }
+.glow-center {
+  position: fixed;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(245,197,24,0.08), transparent 70%);
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  filter: blur(60px);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.aurora-left {
+  position: fixed;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(245,197,24,0.05), transparent 70%);
+  top: 40%;
+  left: 10%;
+  filter: blur(80px);
+  z-index: 0;
+}
+
+.aurora-right {
+  position: fixed;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(245,197,24,0.05), transparent 70%);
+  top: 30%;
+  right: 10%;
+  filter: blur(80px);
+  z-index: 0;
+}
 
 /* ── MARQUEE ────────────────────────────────────────────────── */
 .marquee-wrapper {

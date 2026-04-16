@@ -73,6 +73,44 @@ body::after {
   pointer-events: none;
   animation: gridMove 20s linear infinite, glowShift 10s ease-in-out infinite;
 }
+/* FUNDO ANIMADO AURORA */
+.aurora-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.aurora-bg::before,
+.aurora-bg::after {
+  content: '';
+  position: absolute;
+  width: 800px;
+  height: 800px;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.35;
+  animation: auroraMove 18s infinite alternate ease-in-out;
+}
+
+.aurora-bg::before {
+  background: rgba(245,197,24,0.25);
+  top: -200px;
+  left: -200px;
+}
+
+.aurora-bg::after {
+  background: rgba(255,215,0,0.15);
+  bottom: -200px;
+  right: -200px;
+  animation-delay: 6s;
+}
+
+@keyframes auroraMove {
+  0% { transform: translate(0,0) scale(1); }
+  50% { transform: translate(100px, -50px) scale(1.2); }
+  100% { transform: translate(-50px, 80px) scale(1); }
+}
 
 @keyframes gridMove {
   0%   { transform: translate(0, 0); }

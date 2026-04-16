@@ -1215,12 +1215,12 @@
 
     // FAQ CHEVRON
     document.querySelectorAll('details').forEach(d => {
-      d.addEventListener('toggle', () => {
-        const chevron = d.querySelector('.chevron');
-        if (chevron) chevron.style.transform = d.open ? 'rotate(180deg)' : 'rotate(0deg)';
-        <div class="aurora-bg"></div>
-<div id="particles" class="particles"></div>
-      });
+   d.addEventListener('toggle', () => {
+  const chevron = d.querySelector('.chevron');
+  if (chevron) {
+    chevron.style.transform = d.open ? 'rotate(180deg)' : 'rotate(0deg)';
+  }
+});
     });
 
   });

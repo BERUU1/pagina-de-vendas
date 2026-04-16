@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
       span.style.animationDelay   = (Math.random() * 10) + 's';
       particlesContainer.appendChild(span);
     }
-  }\
+  }
 
   // ── SCROLL REVEAL — delay via data-delay ──────────────────
   const revealObserver = new IntersectionObserver((entries) => {
@@ -66,12 +66,20 @@ document.addEventListener("DOMContentLoaded", () => {
   const ofertaSection = document.getElementById('oferta');
 
   if (stickyBar) {
-    window.addEventListener('scroll', () => {
-      const scrolled = window.scrollY > 600;
-      const pastOffer = ofertaSection && window.scrollY > ofertaSection.offsetTop - 100;
-      stickyBar.classList.toggle('show', scrolled && !pastOffer);
-    }, { passive: true });
+ let ticking = false;
+
+window.addEventListener('scroll', () => {
+  if (!ticking) {
+    window.requestAnimationFrame(() => {
+      const scroll = window.scrollY;
+      parallaxEls.forEach(el => {
+        el.style.transform = `translateY(${scroll * 0.05}px)`;
+      });
+      ticking = false;
+    });
+    ticking = true;
   }
+}, { passive: true });
 
   // ── FAQ CHEVRON ────────────────────────────────────────────
   document.querySelectorAll('details').forEach(d => {
@@ -118,19 +126,31 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Cursor glow
-    const glow = document.createElement('div');
     glow.classList.add('cursor-glow');
     document.body.appendChild(glow);
     document.addEventListener('mousemove', (e) => {
       glow.style.left = e.clientX + 'px';
       glow.style.top  = e.clientY + 'px';
     }, { passive: true });
+const glow = document.createElement('div');
+glow.classList.add('cursor-glow');
+document.body.appendChild(glow);
   }
 
   // ── PARALLAX NAS IMAGENS ───────────────────────────────────
   const parallaxEls = document.querySelectorAll('.img-main, .img-medium');
   if (parallaxEls.length > 0) {
-    window.addEventListener('scroll', () => {
+let ticking = false;
+
+window.addEventListener('scroll', () => {
+  if (!ticking) {
+    window.requestAnimationFrame(() => {
+      // seu código aqui
+      ticking = false;
+    });
+    ticking = true;
+  }
+});
       const scroll = window.scrollY;
       parallaxEls.forEach(el => {
         el.style.transform = `translateY(${scroll * 0.05}px)`;
@@ -152,5 +172,14 @@ document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
   }
+   // GERAR PARTÍCULAS
+
+
+document.addEventListener('mousemove', (e) => {
+  if (glow) {
+    glow.style.left = e.clientX + 'px';
+    glow.style.top = e.clientY + 'px';
+  }
+});
 
 });

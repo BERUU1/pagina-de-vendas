@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
       span.style.animationDelay   = (Math.random() * 10) + 's';
       particlesContainer.appendChild(span);
     }
-  }
+  }\
 
   // ── SCROLL REVEAL — delay via data-delay ──────────────────
   const revealObserver = new IntersectionObserver((entries) => {

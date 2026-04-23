@@ -294,12 +294,13 @@
 </head>
 
 <body>
- <!-- <div class="aurora-bg"></div>
-<div id="particles" class="particles"></div>
+
   <!-- BARRA DE URGÊNCIA -->
   <div style="background:#f87171; color:#fff; text-align:center; padding:9px; font-weight:bold; font-size:14px; position:relative; z-index:60;">
     🔥 ATENÇÃO: Desconto ativo hoje — pode sair do ar a qualquer momento
   </div>
+
+  <div class="ambient"></div>
 
   <!-- ============================================================
        STICKY BAR
@@ -352,12 +353,17 @@
         ⚠️ Isso era o comportamento dele antes:
       </p>
 
-      <!-- PSEUDO-VÍDEO COM PLAY FAKE -->
-    <div style="display:inline-block; max-width:420px; width:100%;">
-  <img src="./assets/images/antes-depois.jpg"
-       alt="Demonstração do método"
-       style="width:100%; border-radius:12px; border:1px solid rgba(255,255,255,0.1); display:block;">
-</div>
+      <!-- VÍDEO YOUTUBE — thumbnail + play on click -->
+      <div style="position:relative; max-width:560px; margin:12px auto; border-radius:12px; overflow:hidden; border:1px solid rgba(255,255,255,0.1); cursor:pointer;"
+           onclick="this.innerHTML='<iframe src=\'https://www.youtube.com/embed/Oq8nei1VMCQ?autoplay=1&rel=0&modestbranding=1\' frameborder=\'0\' allow=\'autoplay; encrypted-media; picture-in-picture\' allowfullscreen style=\'width:100%;height:315px;border-radius:12px;display:block;\'></iframe>'">
+        <img src="https://img.youtube.com/vi/Oq8nei1VMCQ/hqdefault.jpg"
+             alt="Assista ao método em ação"
+             style="width:100%; display:block; border-radius:12px;">
+        <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); background:rgba(0,0,0,0.72); width:72px; height:72px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:30px; color:#fff; box-shadow:0 0 24px rgba(0,0,0,0.6);">
+          ▶
+        </div>
+        <p style="position:absolute; bottom:10px; left:0; right:0; text-align:center; color:#FFD84D; font-size:13px; font-weight:bold; text-shadow:0 1px 4px rgba(0,0,0,0.8);">▶ Clique e veja o método em ação</p>
+      </div>
 
       <p class="text-sm font-bold mt-3" style="color:#22c55e;">
         ✅ Esse foi o resultado depois de aplicar o método:
@@ -985,46 +991,20 @@
       </div>
 
       <!-- FORMAS DE PAGAMENTO -->
-    <!-- FORMAS DE PAGAMENTO — SVG inline, sem dependência externa -->
-<div class="flex flex-wrap items-center justify-center gap-4 mb-4">
-
-<!-- PIX -->
-<div class="flex items-center gap-2 px-4 py-2 rounded-lg" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);">
-  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M6.5 6.5 L12 1 L17.5 6.5 L12 12 Z" fill="#32BCAD"/>
-    <path d="M17.5 6.5 L23 12 L17.5 17.5 L12 12 Z" fill="#32BCAD"/>
-    <path d="M17.5 17.5 L12 23 L6.5 17.5 L12 12 Z" fill="#32BCAD"/>
-    <path d="M6.5 17.5 L1 12 L6.5 6.5 L12 12 Z" fill="#32BCAD"/>
-  </svg>
-  <span class="text-sm" style="color:#aaa;">PIX</span>
-</div>
-
-  <!-- CARTÃO DE CRÉDITO -->
-  <div class="flex items-center gap-2 px-4 py-2 rounded-lg" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);">
-    <svg width="22" height="22" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect x="4" y="10" width="40" height="28" rx="4" fill="#4A90D9"/>
-      <rect x="4" y="18" width="40" height="7" fill="#2C5F8A"/>
-      <rect x="8" y="30" width="10" height="4" rx="1" fill="#fff" opacity=".8"/>
-      <rect x="22" y="30" width="6" height="4" rx="1" fill="#fff" opacity=".5"/>
-    </svg>
-    <span class="text-sm" style="color:#aaa;">Cartão de crédito</span>
-  </div>
-
-  <!-- BOLETO -->
-  <div class="flex items-center gap-2 px-4 py-2 rounded-lg" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);">
-    <svg width="22" height="22" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect x="4" y="8" width="40" height="32" rx="3" fill="#fff" opacity=".1"/>
-      <rect x="8"  y="13" width="2"  height="22" fill="#ccc"/>
-      <rect x="12" y="13" width="4"  height="22" fill="#ccc"/>
-      <rect x="18" y="13" width="2"  height="22" fill="#ccc"/>
-      <rect x="22" y="13" width="6"  height="22" fill="#ccc"/>
-      <rect x="30" y="13" width="2"  height="22" fill="#ccc"/>
-      <rect x="34" y="13" width="4"  height="22" fill="#ccc"/>
-    </svg>
-    <span class="text-sm" style="color:#aaa;">Boleto</span>
-  </div>
-
-</div>
+      <div class="flex flex-wrap items-center justify-center gap-4 mb-4">
+        <div class="flex items-center gap-2 px-4 py-2 rounded-lg" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/8/89/Pix_logo.svg" alt="PIX" class="h-5 opacity-80">
+          <span class="text-sm" style="color:#aaa;">PIX</span>
+        </div>
+        <div class="flex items-center gap-2 px-4 py-2 rounded-lg" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);">
+          <img src="https://cdn-icons-png.flaticon.com/512/196/196578.png" alt="Cartão" class="h-5 opacity-80">
+          <span class="text-sm" style="color:#aaa;">Cartão de crédito</span>
+        </div>
+        <div class="flex items-center gap-2 px-4 py-2 rounded-lg" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);">
+          <img src="https://cdn-icons-png.flaticon.com/512/633/633611.png" alt="Boleto" class="h-5 opacity-80">
+          <span class="text-sm" style="color:#aaa;">Boleto</span>
+        </div>
+      </div>
 
       <p class="text-xs mt-2" style="color:#555;">
         🔒 Pagamento seguro via Hotmart • Acesso imediato após pagamento
@@ -1135,19 +1115,6 @@
           Assim que o pagamento for aprovado, o acesso chega automaticamente no e-mail cadastrado. PIX e Cartão têm acesso imediato.
         </p>
       </details>
-      <div class="flex items-center justify-center gap-6 mt-4">
-
-  <div class="flex items-center gap-2 bg-white/5 px-4 py-2 rounded-lg">
-    <img src="https://logospng.org/download/pix/logo-pix-icone-1024.png" class="h-6">
-    <span class="text-white">PIX</span>
-  </div>
-
-  <div class="flex items-center gap-2 bg-white/5 px-4 py-2 rounded-lg">
-    <img src="https://cdn-icons-png.flaticon.com/512/2489/2489756.png" class="h-6">
-    <span class="text-white">Boleto</span>
-  </div>
-
-</div>
 
       <details class="card p-6 cursor-pointer group">
         <summary class="flex justify-between items-center font-bold text-lg text-white outline-none select-none">
@@ -1177,7 +1144,6 @@
       </a>
     </div>
   </section>
-  
 
   <!-- ============================================================
        FOOTER
@@ -1194,12 +1160,11 @@
   <!-- ============================================================
        SCRIPTS
   ============================================================ -->
- <script>
-  document.addEventListener("DOMContentLoaded", () => {
-
+  <script>
     // CONTADOR DE VISITANTES — realista
-    const el = document.getElementById("viewers");
-    if (el) {
+    function randomViewers() {
+      const el = document.getElementById("viewers");
+      if (!el) return;
       let current = 82;
       setInterval(() => {
         let variation = Math.floor(Math.random() * 5) - 2;
@@ -1209,33 +1174,21 @@
         el.innerText = current;
       }, 2500);
     }
+    randomViewers();
 
     // SCROLL REVEAL
+    const reveals = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
         }
       });
     }, { threshold: 0.1 });
+    reveals.forEach(el => observer.observe(el));
 
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-    // SMOOTH SCROLL para links internos (#ancora)
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        const targetId = this.getAttribute('href');
-        if (targetId === '#') return;
-        const target = document.querySelector(targetId);
-        if (target) {
-          e.preventDefault();
-          target.scrollIntoView({ behavior: 'smooth' });
-        }
-      });
-    });
-
-    // STICKY BAR — aparece após rolar 600px, some perto da oferta
+    // STICKY BAR — aparece após rolar 600px
     const stickyBar = document.getElementById('stickyBar');
     const ofertaSection = document.getElementById('oferta');
     window.addEventListener('scroll', () => {
@@ -1250,15 +1203,12 @@
 
     // FAQ CHEVRON
     document.querySelectorAll('details').forEach(d => {
-   d.addEventListener('toggle', () => {
-  const chevron = d.querySelector('.chevron');
-  if (chevron) {
-    chevron.style.transform = d.open ? 'rotate(180deg)' : 'rotate(0deg)';
-  }
-});
+      d.addEventListener('toggle', () => {
+        const chevron = d.querySelector('.chevron');
+        if (chevron) chevron.style.transform = d.open ? 'rotate(180deg)' : 'rotate(0deg)';
+      });
     });
+  </script>
 
-  });
-</script>
 </body>
 </html>

@@ -343,46 +343,66 @@
     </p>
 
     <div class="text-center mb-10 reveal" style="transition-delay:0.15s">
-      <span class="badge mb-4 inline-block">📸 Resultado real de aluno</span>
 
-      <h3 class="text-xl font-bold text-white mb-3">
-        ANTES ELE TE IGNORAVA…
-      </h3>
+      <!-- VÍDEO (CLICA PARA REPRODUZIR) -->
+      <div style="position:relative; max-width:560px; margin:0 auto;">
 
-      <p style="color:#ff4d4d; font-size:18px; font-weight:800; margin-bottom:16px;">
-        ⚠️ ISSO ERA O COMPORTAMENTO DELE ANTES:
-      </p>
+        <!-- THUMB + BOTÃO PLAY -->
+        <div id="videoThumb" style="cursor:pointer; position:relative;">
+          <img src="https://img.youtube.com/vi/Oq8nei1VMCQ/hqdefault.jpg"
+               style="width:100%; border-radius:12px;">
+          <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); background:rgba(0,0,0,0.7); width:70px; height:70px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:30px; color:white;">
+            ▶
+          </div>
+        </div>
 
-      <div style="margin:20px 0;">
-        <img src="./assets/images/antes-depois.jpg"
-             alt="Antes e depois do comportamento do cachorro"
-             style="width:100%; max-width:560px; border-radius:12px; margin:0 auto; display:block; border:1px solid rgba(255,255,255,0.1);">
-      </div>
-
-      <!-- VÍDEO YOUTUBE -->
-      <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; max-width:560px; margin:12px auto; border-radius:12px; border:1px solid rgba(255,255,255,0.1);">
-        <iframe
-          src="https://www.youtube.com/embed/Oq8nei1VMCQ?autoplay=1&mute=1&controls=0&rel=0&modestbranding=1&fs=0&disablekb=1&playsinline=1"
+        <!-- IFRAME (ESCONDIDO) -->
+        <iframe id="videoFrame"
+          src=""
           frameborder="0"
           allow="autoplay"
-          allowfullscreen="false"
-          style="position:absolute; top:0; left:0; width:100%; height:100%; border-radius:12px;">
+          style="display:none; width:100%; height:315px; border-radius:12px;">
         </iframe>
+
       </div>
 
-      <p class="text-sm font-bold mt-3" style="color:#22c55e;">
-        ✅ Esse foi o resultado depois de aplicar o método:
-      </p>
+      <!-- TEXTO + IMAGEM DEPOIS DO VÍDEO -->
+      <div style="text-align:center; margin-top:25px;">
 
-      <p class="text-lg font-semibold mt-4" style="color: var(--gold-strong);">
-        AGORA ELE TE OBEDECE SEM VOCÊ PRECISAR GRITAR
-      </p>
-      <p class="text-sm mt-2 max-w-md mx-auto" style="color:#888;">
-        Resultado real de um cachorro que puxava a guia, latia sem parar e ignorava comandos simples.
-      </p>
-      <p class="text-sm font-semibold mt-2" style="color:#f87171;">
-        De desobediente → controlado em poucos dias
-      </p>
+        <span class="badge mb-4 inline-block">📸 Resultado real de aluno</span>
+
+        <h3 style="font-size:28px; font-weight:900; color:#fff; margin-bottom:10px; text-transform:uppercase;">
+          ANTES ELE TE IGNORAVA…
+        </h3>
+
+        <p style="color:#ff4d4d; font-size:18px; font-weight:800; margin-bottom:16px;">
+          ⚠️ ISSO ERA O COMPORTAMENTO DELE ANTES:
+        </p>
+
+        <div style="margin:20px 0;">
+          <img src="./assets/images/antes-depois.jpg"
+               alt="Antes e depois do cachorro"
+               style="width:100%; max-width:560px; border-radius:12px; margin:0 auto; display:block; border:1px solid rgba(255,255,255,0.1);">
+        </div>
+
+        <p class="text-sm font-bold mt-3" style="color:#22c55e;">
+          ✅ Esse foi o resultado depois de aplicar o método:
+        </p>
+
+        <p class="text-lg font-semibold mt-4" style="color: var(--gold-strong);">
+          AGORA ELE TE OBEDECE SEM VOCÊ PRECISAR GRITAR
+        </p>
+
+        <p class="text-sm mt-2 max-w-md mx-auto" style="color:#888;">
+          Resultado real de um cachorro que puxava a guia, latia sem parar e ignorava comandos simples.
+        </p>
+
+        <p class="text-sm font-semibold mt-2" style="color:#f87171;">
+          De desobediente → controlado em poucos dias
+        </p>
+
+      </div>
+
     </div>
 
     <!-- BOTÕES HERO -->
@@ -1213,6 +1233,18 @@
         if (chevron) chevron.style.transform = d.open ? 'rotate(180deg)' : 'rotate(0deg)';
       });
     });
+  </script>
+
+  <script>
+    const thumb = document.getElementById("videoThumb");
+    const frame = document.getElementById("videoFrame");
+    if (thumb && frame) {
+      thumb.addEventListener("click", () => {
+        thumb.style.display = "none";
+        frame.style.display = "block";
+        frame.src = "https://www.youtube.com/embed/Oq8nei1VMCQ?autoplay=1&mute=0&rel=0";
+      });
+    }
   </script>
 
 </body>
